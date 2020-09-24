@@ -221,7 +221,7 @@ type devProps = {
 
 // const dev = ({ dev, ...other }: devProps) => {
 // ↑これでも書ける
-const dev: FC<devProps> = ({ dev, stars, archived, description }) => {
+const Dev: FC<devProps> = ({ dev, stars, archived, description }) => {
   const classes = useStyles();
 
   return (
@@ -343,7 +343,7 @@ const dev: FC<devProps> = ({ dev, stars, archived, description }) => {
   );
 }
 
-export default dev
+export default Dev
 
 // reduxよりも、React Hooksで各コンポネント内の責任でstateを保持したい
 

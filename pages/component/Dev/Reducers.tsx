@@ -38,3 +38,21 @@
 //             return state
 //     }
 // };
+import { ActionTypes } from "../../store/ActionTypes";
+import { reducksCounter, ReducksCounterActionTypes } from "./Types";
+
+const counterInitialState: reducksCounter  = {
+    reducksCount: 0
+}
+
+export const ReducksCounterReducer = (state = counterInitialState, action: ReducksCounterActionTypes): reducksCounter => {
+    switch (action.type) {
+      case ActionTypes.COUNT_DOWN:
+        return { reducksCount: state.reducksCount - 1 };
+    case ActionTypes.COUNT_UP:
+        return { reducksCount: state.reducksCount + 1 };
+      default:
+        // const _: never = action;
+        return state;
+    }
+  };
