@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { ComponentProps, FC, useState, useEffect } from 'react'
+import React, { ComponentProps, FC, useState, useEffect, useReducer } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -13,11 +13,49 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import Icon from '@material-ui/core/Icon'
 import SaveIcon from '@material-ui/icons/Save'
-import Table from './common/Table'
-import Card from './common/Card'
-import Alert from './common/Alert'
-import Checkbox from './common/Checkbox'
-import ClickEvent from './common/ClickEvent'
+import Table from '../common/Table'
+import Card from '../common/Card'
+import Alert from '../common/Alert'
+import Checkbox from '../common/Checkbox'
+import ClickEvent from '../common/ClickEvent'
+
+
+// 1機能＝1ディレクトリの考え方：re-ducksのファイル構成を採用した。
+// メリット
+// ・reducer、actionTypeが肥大化しない。
+// ・ディレクトリごとなので、大規模になってもディレクトリの責任が明確・記述された場所が把握しやすい
+// ・TSのTypeを各Type.jsの作成も、同じディレクトリ内にすることで、型定義の管理もしやすい
+
+// デメリット
+// ・初期段階で作成が大変
+// ・ducksの構成（operater, selector, typeがなく簡単。
+//  modules, containerのみ。※modulesにstore周りを全ていれる）が普及している感はあるため、
+//  最初とっつきにくい
+// ・管理するファイルは増える
+
+// re-ducks構成
+// https://tech.playground.style/javascript/re-ducks/
+// dev
+// ├ actions.js
+// ├ index.js
+// ├ operations.js
+// ├ reducers.js
+// ├ selectors.js
+// └ types.js
+
+// typeScriptのducks構成
+// https://qiita.com/ragnar1904/items/72631e4476f94057c630
+// ↑この二つを混ぜる。
+
+// ducks構成
+// actions
+// ├ devAction.js
+//
+// reducers
+// ├ devReducers.js
+
+// modules
+// ├ dev.js
 
 // TODO: scssを後で入れる
 // 再読み込みでCSSが崩れる
@@ -47,7 +85,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-// TODO: 　削除
 
 // 通常のアクセスの場合、getInitialPropsがサーバー側で実行されます。
 // 一方、next/linkを使用してクライアントサイドルーティングした場合にはクライアント側で実行されます。
@@ -64,14 +101,18 @@ import axios from 'axios'
 import fetch from 'isomorphic-unfetch'
 
 // APIのURLが増えると冗長なので、定数マスタでurlを作成しておく、
-// TODO: const baseURL = http://localhost:8000/v1
+// TODO: 関数の抽象化: fetch(url, option)でAPIが叩ける状態にする。
+// URLは定数マスタから呼び出す。
+
+// const baseURL = http://localhost:8000/v1
+// import { fetch } from './.....';
 
 export async function getStaticProps() {
   // gitHubからnext.jsのスター数をカウントするAPI
   const url = 'https://api.github.com/repos/zeit/next.js';
   const res = await fetch(url)
   const json = await res.json()
-  const stars = json.stargazers_count
+  const stars: number = json.stargazers_count
   const response = await axios.get(url)
   const { archived = true, description = "description"}: { archived: boolean, description: string} = response.data
     // API → setState
@@ -104,6 +145,60 @@ export async function getStaticProps() {
 }
 
 
+const initialState = {
+  BadDispatchCount: 0
+}
+
+// キーは文字列、そのほかは入った型を定義する → types.tsxへ定義
+type initialState<T> = {
+  [key: string]: T
+}
+
+const reducer = (state = initialState, action: any) => {
+  switch(action.type) {
+    case 'increment':
+      return {BadDispatchCount: state.BadDispatchCount + 1};
+    case 'decrement':
+      return {BadDispatchCount: state.BadDispatchCount - 1};
+    default:
+      throw new Error();
+  }
+}
+
+const BadDispatchCounter = () =>  {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const increseNumber = () => {
+    dispatch({type: 'increment'})
+  }
+
+  const decreaseNumber = () => {
+    dispatch({type: 'decrement'})
+  }
+  return (
+    <>
+      BadDispatchCount: {state.BadDispatchCount}
+      <button onClick={() => increseNumber()}>+</button>
+      <button onClick={() => decreaseNumber()}>-</button>
+    </>
+  );
+}
+
+// 単一のコンポネント（共通コンポネントには最適）
+const HooksCounter = () => {
+  const [count, setCount] = useState(0)
+  const countUp = () => setCount(count + 1)
+  const countDown = () => setCount(count - 1)
+
+  return (
+    <>
+    HooksCount: {count}
+    <button onClick={() => countUp()}>countUp </button>
+    <button onClick={() => countDown()}>countDown </button>
+    </>
+  )
+}
+
+
 // TODO: Pick+Partialは要調査
 // type HogeProps = <ComponentProps
 // type PartialP2 = Partial<Pick
@@ -126,11 +221,19 @@ type devProps = {
   style?: React.CSSProperties;
 };
 
-// const dev = ({ dev }: devProps) => {
+import { getReducksCounter } from './selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { reducksCountUp, reducksCountDown } from './actions'
+// const dev = ({ dev, ...other }: devProps) => {
 // ↑これでも書ける
-const dev: FC<devProps> = ({ dev, stars, archived, description }) => {
+const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
   const classes = useStyles();
+  const selector = useSelector(state => state)
+  const reducksCount = getReducksCounter(selector)
+  const dispatch = useDispatch()
 
+  const handleIncrement = () => dispatch(reducksCountUp(reducksCount));
+  const handleDecrement = () => dispatch(reducksCountDown(reducksCount));
   return (
     <>
       <div className="grid">
@@ -156,7 +259,15 @@ const dev: FC<devProps> = ({ dev, stars, archived, description }) => {
         axiosAPIで取得したdescription：{description}
         </div>
         <div>
-        TODO: stateの保持
+        <BadDispatchCounter />
+        </div>
+        <div>
+        <HooksCounter />
+        </div>
+        <div>
+          reducksCount: { reducksCount }
+          <button onClick={() => handleIncrement()} >reducksCountUp</button>
+          <button onClick={() => handleDecrement()} >reducksCountDown</button>
         </div>
       </div>
 
@@ -244,4 +355,9 @@ const dev: FC<devProps> = ({ dev, stars, archived, description }) => {
   );
 }
 
-export default dev
+export default Dev
+
+// reduxよりも、React Hooksで各コンポネント内の責任でstateを保持したい
+
+// 理由：reduxの思想としては、stateを一元管理するため、全画面で値を取得でき、画面遷移にも強い点はある一方で
+// 大規模になるほど、使用するstateが増えるため、stateの把握、認識自体が大変になるし、テストも大変になる。
