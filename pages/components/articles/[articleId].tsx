@@ -3,7 +3,7 @@ import React from 'react'
 // localhost:3000/component/articles/hoge
 
 const articleContent = () => {
-    const router = useRouter()
+  const router = useRouter()
   const { articleId } = router.query
 
   return <p>記事ID: {articleId}</p>

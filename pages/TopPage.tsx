@@ -14,32 +14,32 @@ const TopPage = () => {
 
       <main>
       <Button variant="contained">
-          <Link href="/component/Dev">
+          <Link href="/components/dev">
             <a>Dev</a>
           </Link>
       </Button>
         <Button variant="contained">
-          <Link href="/component/signup">
+          <Link href="/components/signup">
           <a>signup</a>
           </Link>
         </Button>
         <Button variant="contained">
-          <Link href="/component/sinout">
+          <Link href="/components/sinout">
           <a>sinout</a>
           </Link>
         </Button>
         <Button variant="contained">
-          <Link href="/component/login">
+          <Link href="/components/login">
           <a>login</a>
           </Link>
         </Button>
         <Button variant="contained">
-          <Link href="/component/logout">
+          <Link href="/components/logout">
           <a>logout</a>
           </Link>
         </Button>
         <Button variant="contained">
-          <Link href="/component/mypage">
+          <Link href="/components/mypage">
           <a>mypage</a>
           </Link>
         </Button>

@@ -85,7 +85,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-// TODO: 　削除
 
 // 通常のアクセスの場合、getInitialPropsがサーバー側で実行されます。
 // 一方、next/linkを使用してクライアントサイドルーティングした場合にはクライアント側で実行されます。
@@ -102,7 +101,11 @@ import axios from 'axios'
 import fetch from 'isomorphic-unfetch'
 
 // APIのURLが増えると冗長なので、定数マスタでurlを作成しておく、
-// TODO: const baseURL = http://localhost:8000/v1
+// TODO: 関数の抽象化: fetch(url, option)でAPIが叩ける状態にする。
+// URLは定数マスタから呼び出す。
+
+// const baseURL = http://localhost:8000/v1
+// import { fetch } from './.....';
 
 export async function getStaticProps() {
   // gitHubからnext.jsのスター数をカウントするAPI
@@ -152,7 +155,6 @@ type initialState<T> = {
 }
 
 const reducer = (state = initialState, action: any) => {
-  // TODO switch分はできるだけ使わない。→クリーンアーキテクチャ
   switch(action.type) {
     case 'increment':
       return {BadDispatchCount: state.BadDispatchCount + 1};
@@ -184,7 +186,6 @@ const BadDispatchCounter = () =>  {
 // 単一のコンポネント（共通コンポネントには最適）
 const HooksCounter = () => {
   const [count, setCount] = useState(0)
-  // const [state, setCount] = useState(intialState)
   const countUp = () => setCount(count + 1)
   const countDown = () => setCount(count - 1)
 
@@ -196,6 +197,7 @@ const HooksCounter = () => {
     </>
   )
 }
+
 
 // TODO: Pick+Partialは要調査
 // type HogeProps = <ComponentProps
@@ -219,11 +221,19 @@ type devProps = {
   style?: React.CSSProperties;
 };
 
+import { getReducksCounter } from './selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { reducksCountUp, reducksCountDown } from './actions'
 // const dev = ({ dev, ...other }: devProps) => {
 // ↑これでも書ける
-const Dev: FC<devProps> = ({ dev, stars, archived, description }) => {
+const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
   const classes = useStyles();
+  const selector = useSelector(state => state)
+  const reducksCount = getReducksCounter(selector)
+  const dispatch = useDispatch()
 
+  const handleIncrement = () => dispatch(reducksCountUp(reducksCount));
+  const handleDecrement = () => dispatch(reducksCountDown(reducksCount));
   return (
     <>
       <div className="grid">
@@ -255,7 +265,9 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description }) => {
         <HooksCounter />
         </div>
         <div>
-        {/* <reducksCounter /> */}
+          reducksCount: { reducksCount }
+          <button onClick={() => handleIncrement()} >reducksCountUp</button>
+          <button onClick={() => handleDecrement()} >reducksCountDown</button>
         </div>
       </div>
 

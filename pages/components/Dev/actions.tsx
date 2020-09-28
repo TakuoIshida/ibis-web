@@ -1,5 +1,5 @@
-import { ActionTypes } from '../../store/ActionTypes'
-import { ReducksCounterActionTypes } from './Types'
+import { ActionTypes } from '../../store/actionTypes'
+import { ReducksCounterActionTypes } from './types'
 // actionsファイルには、純粋にRedux Actionのみを記述します。
 
 export const reducksCountUp = (reducksCount: number): ReducksCounterActionTypes => {
@@ -8,7 +8,7 @@ export const reducksCountUp = (reducksCount: number): ReducksCounterActionTypes 
         payload: reducksCount
     }
 };
-export const reducksCountDwon = (reducksCount: number): ReducksCounterActionTypes => {
+export const reducksCountDown = (reducksCount: number): ReducksCounterActionTypes => {
     return {
         type: ActionTypes.COUNT_DOWN,
         payload: reducksCount
