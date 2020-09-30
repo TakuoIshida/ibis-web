@@ -20,24 +20,6 @@
 //     }
 // };
 
-
-// import * as Actions from './actions';
-// import {counterInitialState} from '../../store/initialState';
-
-// export const reducksCountReducer = (reducksCount = counterInitialState.reducksCount, action)  => {
-//     switch (action.type) {
-//         case Actions.COUNT_UP:
-//             return {
-//                 ...state,
-//                 reducksCount: action.payload
-//             };
-
-//         // 中略
-
-//         default:
-//             return state
-//     }
-// };
 import { ActionTypes } from "../../store/actionTypes";
 import { reducksCounterState, ReducksCounterActionTypes } from "./types";
 

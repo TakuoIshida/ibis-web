@@ -19,93 +19,9 @@ import Alert from '../common/Alert'
 import Checkbox from '../common/Checkbox'
 import ClickEvent from '../common/ClickEvent'
 
-
-// 1機能＝1ディレクトリの考え方：re-ducksのファイル構成を採用した。
-// メリット
-// ・reducer、actionTypeが肥大化しない。
-// ・ディレクトリごとなので、大規模になってもディレクトリの責任が明確・記述された場所が把握しやすい
-// ・TSのTypeを各Type.jsの作成も、同じディレクトリ内にすることで、型定義の管理もしやすい
-
-// デメリット
-// ・初期段階で作成が大変
-// ・ducksの構成（operater, selector, typeがなく簡単。
-//  modules, containerのみ。※modulesにstore周りを全ていれる）が普及している感はあるため、
-//  最初とっつきにくい
-// ・管理するファイルは増える
-
-// re-ducks構成
-// https://tech.playground.style/javascript/re-ducks/
-// dev
-// ├ actions.js
-// ├ index.js
-// ├ operations.js
-// ├ reducers.js
-// ├ selectors.js
-// └ types.js
-
-// typeScriptのducks構成
-// https://qiita.com/ragnar1904/items/72631e4476f94057c630
-// ↑この二つを混ぜる。
-
-// ducks構成
-// actions
-// ├ devAction.js
-//
-// reducers
-// ├ devReducers.js
-
-// modules
-// ├ dev.js
-
-// TODO: scssを後で入れる
-// 再読み込みでCSSが崩れる
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    container: {
-      textAlign: 'center',
-    },
-    link: {
-      textDecoration: 'none',
-      hover: 0.8,
-    },
-    devider: {
-      margin: 30,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-    button: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
-
-// 通常のアクセスの場合、getInitialPropsがサーバー側で実行されます。
-// 一方、next/linkを使用してクライアントサイドルーティングした場合にはクライアント側で実行されます。
-// そのためisomorphic-unfetchといったクライアント側でもサーバー側でも動作するfetchライブラリが推奨されます。
-// getInitialPropsではなく、getStaticPropsを使おう
-// https://qiita.com/matamatanot/items/1735984f40540b8bdf91
-
-// contributerの数、コミット数、スターの数が圧倒的に少ない、
-// fetchはシリアライズしないといけないという欠点から、保守性に不安がある。。
-// 一旦axiosを使う→レンダリングに不便があれば、fetchを使うのはどうか？
-// https://gist.github.com/jsjoeio/0fd8563bc23ef852bc921836512992d9
-
 import axios from 'axios'
 import fetch from 'isomorphic-unfetch'
-
-// APIのURLが増えると冗長なので、定数マスタでurlを作成しておく、
-// TODO: 関数の抽象化: fetch(url, option)でAPIが叩ける状態にする。
-// URLは定数マスタから呼び出す。
-
-// const baseURL = http://localhost:8000/v1
-// import { fetch } from './.....';
+import styles from './dev.module.scss'
 
 export async function getStaticProps() {
   // gitHubからnext.jsのスター数をカウントするAPI
@@ -115,20 +31,6 @@ export async function getStaticProps() {
   const stars: number = json.stargazers_count
   const response = await axios.get(url)
   const { archived = true, description = "description"}: { archived: boolean, description: string} = response.data
-    // API → setState
-    // https://qiita.com/gcyagyu/items/4d186df2e90c53228951
-
-    // ↓をgetの第２引数に渡す
-    // {
-      //   headers: {
-        //     Authorization: "Bearer 8213f5cd-5fds2-4891-83d0-48d172ffab77"
-        //   }
-        // })
-        // .catch(error => {
-          // console.log('error')
-          // }
-          // .finally(
-            // )
 
   // propsで値が返される→props.starsで取得できる
   return {
@@ -198,13 +100,6 @@ const HooksCounter = () => {
   )
 }
 
-
-// TODO: Pick+Partialは要調査
-// type HogeProps = <ComponentProps
-// type PartialP2 = Partial<Pick
-// type Props = HogeProps & PartialP2
-
-
 type devProps = {
   stars: number,
   archived: boolean,
@@ -215,19 +110,12 @@ type devProps = {
     // textbox?: string;
     textbox: string;
   };
-
-  // 使うかわからないけど
-  // CSSプロパティ
-  style?: React.CSSProperties;
 };
 
 import { getReducksCounter } from './selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { reducksCountUp, reducksCountDown } from './actions'
-// const dev = ({ dev, ...other }: devProps) => {
-// ↑これでも書ける
 const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
-  const classes = useStyles();
   const selector = useSelector(state => state)
   const reducksCount = getReducksCounter(selector)
   const dispatch = useDispatch()
@@ -235,51 +123,53 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
   const handleIncrement = () => dispatch(reducksCountUp(reducksCount));
   const handleDecrement = () => dispatch(reducksCountDown(reducksCount));
   return (
-    <>
-      <div className="grid">
+    <div id={styles.dev}>
+      <div>
         <Link href="/">
-          <a className={classes.link}>Back to Top</a>
+          <a className={styles.link}>Back to Top</a>
         </Link>
       </div>
-      <Link href="//material-ui.com/components/box/">
-        <a>Go to Material-UI</a>
-      </Link>
+      <div>
+        <Link href="//material-ui.com/components/box/">
+          <a className={styles.link}>Go to Material-UI</a>
+        </Link>
+      </div>
 
-      <div className={classes.container}>
-        <div>
+      <div className={styles.container}>
+        <p>
           Propsで受け取った初期値：{dev.textbox}
-        </div>
-        <div>
+        </p>
+        <p>
         fetchAPIで取得したnext.jsの星の数：{stars}
-        </div>
-        <div>
+        </p>
+        <p>
         axiosAPIで取得したarchived：{`${archived}`}
-        </div>
-        <div>
+        </p>
+        <p>
         axiosAPIで取得したdescription：{description}
-        </div>
-        <div>
+        </p>
+        <p>
         <BadDispatchCounter />
-        </div>
-        <div>
+        </p>
+        <p>
         <HooksCounter />
-        </div>
-        <div>
+        </p>
+        <p>
           reducksCount: { reducksCount }
           <button onClick={() => handleIncrement()} >reducksCountUp</button>
           <button onClick={() => handleDecrement()} >reducksCountDown</button>
-        </div>
+        </p>
       </div>
 
 
-      <Divider className={classes.devider} />
-      <div className={classes.root}>
+      <Divider className="margin_top" />
+      <div className={styles.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <IconButton edge="start" className={styles.menu_button} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={styles.title}>
               News
           </Typography>
             <Button color="inherit">ボタン</Button>
@@ -291,7 +181,7 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
         <Button
           variant="contained"
           color="secondary"
-          className={classes.button}
+          className="button"
           startIcon={<DeleteIcon />}
         >
           Delete
@@ -300,7 +190,7 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
         <Button
           variant="contained"
           color="primary"
-          className={classes.button}
+          className="button"
           endIcon={<Icon>send</Icon>}
         >
           Send
@@ -308,7 +198,7 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
         <Button
           variant="contained"
           color="default"
-          className={classes.button}
+          className="button"
           startIcon={<CloudUploadIcon />}
         >
           Upload
@@ -317,7 +207,7 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
           variant="contained"
           disabled
           color="secondary"
-          className={classes.button}
+          className="button"
           startIcon={<KeyboardVoiceIcon />}
         >
           Talk
@@ -326,7 +216,7 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
           variant="contained"
           color="primary"
           size="small"
-          className={classes.button}
+          className="button"
           startIcon={<SaveIcon />}
         >
           Save
@@ -335,23 +225,23 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
           variant="contained"
           color="primary"
           size="large"
-          className={classes.button}
+          className="button"
           startIcon={<SaveIcon />}
         >
           Save
       </Button>
       </div>
-      <Divider className={classes.devider} />
+      <Divider className="root" />
       <Table />
-      <Divider className={classes.devider} />
+      <Divider className="root" />
       <Card />
-      <Divider className={classes.devider} />
+      <Divider className="root" />
       <Alert />
-      <Divider className={classes.devider} />
+      <Divider className="root" />
       <ClickEvent />
-      <Divider className={classes.devider} />
+      <Divider className="root" />
       <Checkbox />
-    </>
+    </div>
   );
 }
 
