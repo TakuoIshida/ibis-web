@@ -1,0 +1,25 @@
+#dev {
+    .container {
+        width: 80%;
+        text-align: center;
+        display: inline-block;
+    }
+    .link {
+        text-decoration: none;
+    }
+    .link:hover {
+        opacity: 0.8;
+    }
+    .margin_top {
+        margin-top: 30px;
+    }
+    .menu_button {
+        margin-right: 50px;
+    }
+    .title {
+        flex-grow: 1;
+    }
+    .button {
+        margin: auto;
+    }
+}
