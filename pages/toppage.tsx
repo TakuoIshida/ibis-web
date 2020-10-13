@@ -24,7 +24,7 @@ const TopPage = () => {
           </Link>
         </Button>
         <Button variant="contained">
-          <Link href="/components/sinout">
+          <Link href="/components/signout">
           <a>sinout</a>
           </Link>
         </Button>
