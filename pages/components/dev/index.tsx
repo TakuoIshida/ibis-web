@@ -22,10 +22,12 @@ import ClickEvent from '../common/ClickEvent'
 import axios from 'axios'
 import fetch from 'isomorphic-unfetch'
 import styles from './dev.module.scss'
+import fetchData from '../../api/fetch'
+import { settings } from "../../constants/settings";
 
 export async function getStaticProps() {
   // gitHubからnext.jsのスター数をカウントするAPI
-  const url = 'https://api.github.com/repos/zeit/next.js';
+  const url = settings.BASE_URL;
   const res = await fetch(url)
   const json = await res.json()
   const stars: number = json.stargazers_count
