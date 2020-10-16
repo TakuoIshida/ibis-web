@@ -19,27 +19,19 @@ import Alert from '../common/Alert'
 import Checkbox from '../common/Checkbox'
 import ClickEvent from '../common/ClickEvent'
 
-import axios from 'axios'
-import fetch from 'isomorphic-unfetch'
 import styles from './dev.module.scss'
-import fetchData from '../../api/fetch'
-import { settings } from "../../constants/settings";
+import { BASE_URL, API_ROUTE } from "../../constants/settings";
+import { getFetch, postFetch } from '../../util/common'
 
 export async function getStaticProps() {
-  // gitHubからnext.jsのスター数をカウントするAPI
-  const url = settings.BASE_URL;
-  const res = await fetch(url)
-  const json = await res.json()
-  const stars: number = json.stargazers_count
-  const response = await axios.get(url)
-  const { archived = true, description = "description"}: { archived: boolean, description: string} = response.data
+  const url = BASE_URL + API_ROUTE.dev;
+  const json = await getFetch(url)
+  const stars: number = await json.stars
 
   // propsで値が返される→props.starsで取得できる
   return {
     props: {
       stars: stars,
-      archived: archived,
-      description: description,
       dev: {
         checkbox: false,
         textbox: 'propsの値',
@@ -102,22 +94,12 @@ const HooksCounter = () => {
   )
 }
 
-type devProps = {
-  stars: number,
-  archived: boolean,
-  description: string,
-  dev: {
-    checkbox: boolean;
-    // ?は存在すれば受け取る。
-    // textbox?: string;
-    textbox: string;
-  };
-};
-
 import { getReducksCounter } from './selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { reducksCountUp, reducksCountDown } from './actions'
-const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
+import {sampleData} from './../../util/sample-data'
+
+const Dev: FC<sampleData> = ({ dev, stars, archived, description}) => {
   const selector = useSelector(state => state)
   const reducksCount = getReducksCounter(selector)
   const dispatch = useDispatch()
@@ -142,13 +124,7 @@ const Dev: FC<devProps> = ({ dev, stars, archived, description}) => {
           Propsで受け取った初期値：{dev.textbox}
         </p>
         <p>
-        fetchAPIで取得したnext.jsの星の数：{stars}
-        </p>
-        <p>
-        axiosAPIで取得したarchived：{`${archived}`}
-        </p>
-        <p>
-        axiosAPIで取得したdescription：{description}
+        fetchAPIで取得したstars：{stars}
         </p>
         <p>
         <BadDispatchCounter />

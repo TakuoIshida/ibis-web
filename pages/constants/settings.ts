@@ -1,13 +1,13 @@
-// 定数を作成、管理する
+// 設定関係の値を管理する
+// TODO：バックエンドのAPIに変更する
+export const BASE_URL: string = 'http://localhost:3000/api' as const
+    // ここにdomainの続きを書く？
+    // BASE_URL : 'https://api.github.com/repos/zeit/next.js',
 
-//   as constによってReadOnlyで型定義できる
-// タグ、ジャンル、出版社、エラー、メッセージ
-// as const によって、union型で定義した定数にも反復処理ができるようになった。
-// https://www.kabuku.co.jp/developers/good-bye-typescript-enum
-export const settings = {
-    BASE_URL : 'https://api.github.com/repos/zeit/next.js',
-} as const;
+export const API_ROUTE: API_ROUTE = {
+    dev: "/dev",
+} as const
 
-type settings = {
-    BASE_URL: string
+type API_ROUTE = {
+    dev: string,
 }

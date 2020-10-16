@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import store from './store'
+import store from './store/dev'
 import styles from "./_index.module.scss"
 import Head from 'next/head'
 import NProgress from 'nprogress'

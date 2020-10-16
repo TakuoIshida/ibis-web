@@ -10,7 +10,7 @@
 //     [usersSelector],
 //     state => state.uid
 // );
-import { RootState } from '../../store'
+import { RootState } from '../../store/dev'
 import { createSelector } from "reselect";
 
 // useSelector Hook: storeの中から必要なstateだけを抽出する

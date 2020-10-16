@@ -1,5 +1,5 @@
 import React from 'react'
-import TopPage from './toppage'
+import TopPage from './components'
 
 const index: React.FC = () => {
   return (
