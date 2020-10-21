@@ -17,7 +17,7 @@
     "axios": "^0.20.0",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "firebase": "^7.23.0",
+    "firebase": "^7.24.0",
     "isomorphic-unfetch": "^3.1.0",
     "js-base64": "^3.5.2",
     "next": "^9.5.5",
