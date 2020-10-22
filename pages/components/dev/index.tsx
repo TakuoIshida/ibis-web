@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { ComponentProps, FC, useState, useEffect, useReducer } from 'react'
+import {FC, useState, useEffect, useReducer } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -20,8 +20,10 @@ import Checkbox from '../common/Checkbox'
 import ClickEvent from '../common/ClickEvent'
 
 import styles from './dev.module.scss'
-import { BASE_URL, API_ROUTE } from "../../constants/settings";
+import { BASE_URL, API_ROUTE } from "../../constants/settings"
 import { getFetch, postFetch } from '../../util/common'
+import Logout from '../auth/logout'
+import Login from '../auth/login'
 
 export async function getStaticProps() {
   const url = BASE_URL + API_ROUTE.dev;
@@ -104,8 +106,8 @@ const Dev: FC<sampleData> = ({ dev, stars, archived, description}) => {
   const reducksCount = getReducksCounter(selector)
   const dispatch = useDispatch()
 
-  const handleIncrement = () => dispatch(reducksCountUp(reducksCount));
-  const handleDecrement = () => dispatch(reducksCountDown(reducksCount));
+  const handleIncrement = () => dispatch(reducksCountUp(reducksCount))
+  const handleDecrement = () => dispatch(reducksCountDown(reducksCount))
   return (
     <div id={styles.dev}>
       <div>
@@ -118,6 +120,8 @@ const Dev: FC<sampleData> = ({ dev, stars, archived, description}) => {
           <a className={styles.link}>Go to Material-UI</a>
         </Link>
       </div>
+      <Login />
+      <Logout />
 
       <div className={styles.container}>
         <p>
