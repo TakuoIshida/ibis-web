@@ -5,18 +5,9 @@ import Login from './auth/login'
 import Logout from './auth/logout'
 import { NextPage } from 'next'
 import {useRouter} from "next/router";
-import { firebase } from "../../src/firebase"
 
-const TopPage: NextPage = (props) => {
-  firebase.auth().onAuthStateChanged((result) => {
-    if(result) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      console.log(result)
-      const email = result.email
-      // The signed-in user info.
-      console.log(email)
-    }
-    })
+const TopPage: NextPage = () => {
+  
   return (
     <div id="index">
       <Head>
@@ -30,25 +21,13 @@ const TopPage: NextPage = (props) => {
             <a>Dev</a>
           </Link>
       </Button>
-        {/* <Button variant="contained">
-          <Link href="/components/signup">
-          <a>signup</a>
-          </Link>
-        </Button>
-        <Button variant="contained">
-          <Link href="/components/signout">
-          <a>sinout</a>
-          </Link>
-        </Button> */}
-
-        <Button variant="contained">
-          <Link href="/components/mypage">
-          <a>mypage</a>
-          </Link>
-        </Button>
-
+    
+      <Button variant="contained">
+        <Link href="/components/mypage" as ="components/mypage">
+        <a>mypage</a>
+        </Link>
+      </Button>
       </main>
-
     </div>
   )
 }
