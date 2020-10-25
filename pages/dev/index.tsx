@@ -122,8 +122,7 @@ const Dev: FC<sampleData> = ({ dev, stars }) => {
       <Login />
       <Logout />
       <Button variant="contained">
-        {/* 事前にviewの取得が必要のないもの or SEOに関連しないものはprefetch falseでもいい */}
-        <Link href="/mypage" as ="/profile" prefetch={false}>
+        <Link href="/mypage" as ="/profile">
             <a>mypage</a>
         </Link>
       </Button>

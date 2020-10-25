@@ -10,7 +10,7 @@ const handleSignIn = () => {
       // The signed-in user info.
       // var user = result.user
       console.log(result)
-      router.prefetch('/')
+      router.push('/')
     })
     .catch(err => {
       alert("OOps something went wrong check your console");

@@ -7,7 +7,7 @@ const handleLogout = () => {
     .signOut()
     .then(function() {
       alert("Logout successful");
-      router.prefetch('/')
+      router.push('/')
     })
     .catch(function(err) {
       alert("OOps something went wrong check your console");
