@@ -2,10 +2,6 @@ import { auth, firebase } from "../../src/firebase"
 import Button from '@material-ui/core/Button'
 import router from "next/router";
 
-
-export function getStaticProps(){
-
-}
 const handleSignIn = () => {
   var provider = new firebase.auth.GoogleAuthProvider()
   auth
@@ -14,17 +10,13 @@ const handleSignIn = () => {
       // The signed-in user info.
       // var user = result.user
       console.log(result)
-      // console.log(user)
       router.prefetch('/')
     })
-    // TODO: err のType ?
     .catch(err => {
       alert("OOps something went wrong check your console");
       console.log(err.code);
       console.log(err.message);
-      // The email of the user's account used.
       console.log(err.email);
-      // The firebase.auth.AuthCredential type that was used.
       console.log(err.credential);
       console.log(err);
     });
