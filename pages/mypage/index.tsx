@@ -15,7 +15,6 @@ const index = () => {
       // The signed-in user info.
     } else {
       router.push('/dev')
-      alert("please access after login")
     }
   })
   return (
