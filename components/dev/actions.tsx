@@ -1,4 +1,4 @@
-import { ActionTypes } from '../../store/actionTypes'
+import { ActionTypes } from '../../constants/actionTypes'
 import { ReducksCounterActionTypes } from './types'
 // actionsファイルには、純粋にRedux Actionのみを記述します。
 

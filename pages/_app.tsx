@@ -1,14 +1,14 @@
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import store from './store/dev'
+import store from '../store/dev'
 import styles from "./_index.module.scss"
 import Head from 'next/head'
-import NProgress from 'nprogress'
-import Router from 'next/router'
+// import NProgress from 'nprogress'
+// import Router from 'next/router'
 
-Router.events.on('routeChangeStart', () => NProgress.inc())
-Router.events.on('routeChangeComplete', () => NProgress.done())
-Router.events.on('routeChangeError', () => NProgress.done())
+// Router.events.on('routeChangeStart', () => NProgress.inc())
+// Router.events.on('routeChangeComplete', () => NProgress.done())
+// Router.events.on('routeChangeError', () => NProgress.done())
 function MyApp({ Component, pageProps }: AppProps) {
   return (
       <Provider store={store}>

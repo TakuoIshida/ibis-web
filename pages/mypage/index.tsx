@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
-import { firebase } from "../../../src/firebase"
+import { firebase } from '../../src/firebase'
 import { useState } from 'react'
+import router from 'next/router'
 
 const index = () => {
   
@@ -14,7 +14,8 @@ const index = () => {
       }
       // The signed-in user info.
     } else {
-      return ""
+      router.push('/dev')
+      alert("please access after login")
     }
   })
   return (

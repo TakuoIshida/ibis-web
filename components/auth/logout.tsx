@@ -1,5 +1,5 @@
 import React from 'react'
-import { auth } from "../../../src/firebase";
+import { auth } from "../../src/firebase";
 import Button from '@material-ui/core/Button'
 import router  from 'next/router'
 const handleLogout = () => {

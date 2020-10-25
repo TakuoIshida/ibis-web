@@ -1,4 +1,4 @@
-import { auth, firebase } from "../../../src/firebase"
+import { auth, firebase } from "../../src/firebase"
 import Button from '@material-ui/core/Button'
 import router from "next/router";
 
@@ -7,10 +7,8 @@ const handleSignIn = () => {
   auth
     .signInWithPopup(provider)
     .then((result) => {
-      var token = result.credential.accessToken || ""
       // The signed-in user info.
       // var user = result.user
-      console.log(token)
       console.log(result)
       // console.log(user)
       router.push('/')
