@@ -18,7 +18,7 @@ import Alert from '../../components/common/Alert'
 import Checkbox from '../../components/common/Checkbox'
 import ClickEvent from '../../components/common/ClickEvent'
 
-import styles from './_dev.module.scss'
+import styles from '../../public/static/styles/_dev.module.scss'
 import { BASE_URL, API_ROUTE } from "../../constants/settings"
 import { getFetch, postFetch } from '../../util/common'
 import Logout from '../../components/auth/logout'
@@ -26,7 +26,7 @@ import Login from '../../components/auth/login'
 import Loading from '../../components/common/Loading'
 
 export async function getServerSideProps() {
-  const url = BASE_URL + API_ROUTE.dev;
+  const url:string = BASE_URL + API_ROUTE.dev;
   const json = await getFetch(url)
   const stars: number = await json.stars
 
@@ -35,7 +35,6 @@ export async function getServerSideProps() {
     props: {
       stars: stars,
       dev: {
-        checkbox: false,
         textbox: 'propsの値',
       }
    }

@@ -5,7 +5,7 @@ export const BASE_URL: string | undefined = `${process.env.BASE_URL}/api`
     // BASE_URL : 'https://api.github.com/repos/zeit/next.js',
 
 export const API_ROUTE: API_ROUTE = {
-    dev: "/dev",
+    dev: '/dev',
 } as const
 
 type API_ROUTE = {

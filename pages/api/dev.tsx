@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleData } from '../../../util/sample-data'
+import { sampleData } from '../../util/sample-data'
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
     try {
