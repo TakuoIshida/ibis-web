@@ -1,3 +1,4 @@
+import { auth } from "firebase";
 
 export const sampleData = {
     stars: 100,
@@ -23,3 +24,101 @@ dev: {
 statusCode?: number,
 message?: string
 };
+
+// get-articles-article-id
+// 記事を取得する
+// path: /articles/{article_id}
+// 200 or 404
+export const get_articles_article_id ={
+    "Abstract": "abstract.abstractabstractabstractabstractabstractabstractabstractabstractabstractabstractabstractabstract",
+    "Authors": [
+        "nakazumi", "yagi", "maeda"
+        ],
+    "Category": "bio science",
+    "ID": 1,
+    "IsOpenAccess": true,
+    "IsPayArticle": true,
+    "IsReadable": true,
+    "OriginalURL": "https://OriginalURL",
+    "PublishDate": "2020-10-26",
+    "Publisher": "I am a publisher.",
+    "Tags": [
+    "tag1", "tag2"
+    ],
+    "Title": "this is title"
+}
+
+export type get_articles_article_id = {
+    Abstract: string,
+    Authors: string[],
+    Category: string,
+    ID: number,
+    IsOpenAccess: boolean,
+    IsPayArticle: boolean,
+    IsReadable: boolean,
+    OriginakURL: string,
+    PublishDate: string,
+    Publisher: string,
+    Tags: string[],
+    Title: string
+}
+
+// post-articles-article-id-purchase
+// 記事を購入する
+// path: /articles/{article_id}/purchase
+// 200 404 401 Unauthorized
+export const post_articles_article_id_purchase = {
+    "IsSucceeded": true
+}
+
+export type post_articles_article_id_purchase ={ 
+    IsSucceeded: boolean
+}
+
+// get-articles-search
+// 記事を検索する
+// path: /articles/search
+// 200
+export const get_articles_search = [
+    {
+      "Abstract": "string",
+      "Authors": [
+        "string"
+      ],
+      "Category": "string",
+      "ID": 0,
+      "IsOpenAccess": true,
+      "IsPayArticle": true,
+      "IsReadable": true,
+      "OriginalURL": "string",
+      "PublishDate": "string",
+      "Publisher": "string",
+      "Tags": [
+        "string"
+      ],
+      "Title": "string"
+    }
+]
+
+export type get_articles_search = [
+    {
+        Abstract: string,
+      Authors: [
+        string
+      ],
+      Category: string,
+      ID: 0,
+      IsOpenAccess: boolean,
+      IsPayArticle: boolean,
+      IsReadable: boolean,
+      OriginalURL: string,
+      PublishDate: string,
+      Publisher: string,
+      Tags: [
+        string
+      ],
+      Title: string
+    }
+]
+
+// authはgoogle認証で実装済み
