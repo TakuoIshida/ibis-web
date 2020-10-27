@@ -20,7 +20,7 @@ const TopPage: NextPage = () => {
       </Button>
 
       <Button variant="contained">
-          <Link href="/dev/nextApi">
+          <Link href="/dev/next_api">
             <a>API response test</a>
           </Link>
       </Button>
