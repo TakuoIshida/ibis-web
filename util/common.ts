@@ -20,12 +20,14 @@ export const postFetch = async (url: string, body: {}) => {
 
 // 外部パッケージでimortした関数はラップする（保守運用上のため）
 // TODO: Google認証、各種ユーザー動作のシミュレーションをして、関数をラップ化する
-export const isUserHasToken = async () => {
+export const isUserLogin = async () => {
     try{
         // 現在ログインしているユーザのTokenをリフレッシュ（forceRefresh）して取得する
-        firebase.auth().onAuthStateChanged((user) => {
-            console.log(user?.refreshToken)
-            return (user? true : false)   
+        await firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                return true
+            }
+            return false   
         })
        } catch (err){
         console.log(err)
