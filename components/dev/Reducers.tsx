@@ -21,7 +21,7 @@
 // };
 
 import { ActionTypes } from "../../constants/actionTypes";
-import { reducksCounterState, ReducksCounterActionTypes } from "./types";
+import { reducksCounterState, ReducksCounterActionTypes } from "./Types";
 
 const counterInitialState: reducksCounterState  = {
     reducksCount: 0

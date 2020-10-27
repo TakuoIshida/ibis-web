@@ -1,5 +1,5 @@
 import { ActionTypes } from '../../constants/actionTypes'
-import { ReducksCounterActionTypes } from './types'
+import { ReducksCounterActionTypes } from './Types'
 // actionsファイルには、純粋にRedux Actionのみを記述します。
 
 export const reducksCountUp = (reducksCount: number): ReducksCounterActionTypes => {
