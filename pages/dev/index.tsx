@@ -122,7 +122,7 @@ const Dev: FC<sampleData> = ({ dev, stars }) => {
       <Login />
       <Logout />
       <Button variant="contained">
-        <Link href="/mypage" as ="/profile">
+        <Link href="/mypage" as ="/mypage">
             <a>mypage</a>
         </Link>
       </Button>

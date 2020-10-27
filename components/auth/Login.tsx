@@ -7,11 +7,10 @@ const handleSignIn = () => {
   auth
     .signInWithPopup(provider)
     .then((result) => {
-      // The signed-in user info.
-      // var user = result.user
-      console.log(result)
-      // topで隠すことができる
-      router.push('/', '/home')
+      // IDトークン取得できる
+      // const userInfo: string = result.credential.accessToken || ""
+      // console.log(userInfo)
+      router.push('/')
     })
     .catch(err => {
       alert("OOps something went wrong check your console");
