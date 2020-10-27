@@ -1,5 +1,3 @@
-import { auth } from "firebase";
-
 export const sampleData = {
     stars: 100,
     archived: true,
@@ -29,8 +27,8 @@ message?: string
 // 記事を取得する
 // path: /articles/{article_id}
 // 200 or 404
-export const get_articles_article_id ={
-    "Abstract": "abstract.abstractabstractabstractabstractabstractabstractabstractabstractabstractabstractabstractabstract",
+export const get_articles_article_id = {
+    "Abstract": "abstractabstractabstractabstractabstractabstractabstractabstractabstractabstractabstractabstractabstract",
     "Authors": [
         "nakazumi", "yagi", "maeda"
         ],
@@ -86,7 +84,7 @@ export const get_articles_search = [
         "string"
       ],
       "Category": "string",
-      "ID": 0,
+      "ID": 1,
       "IsOpenAccess": true,
       "IsPayArticle": true,
       "IsReadable": true,
@@ -97,6 +95,24 @@ export const get_articles_search = [
         "string"
       ],
       "Title": "string"
+    },
+    {
+      "Abstract": "string2",
+      "Authors": [
+        "string2"
+      ],
+      "Category": "string2",
+      "ID": 2,
+      "IsOpenAccess": false,
+      "IsPayArticle": true,
+      "IsReadable": false,
+      "OriginalURL": "string2",
+      "PublishDate": "string2",
+      "Publisher": "string2",
+      "Tags": [
+        "string2"
+      ],
+      "Title": "string2"
     }
 ]
 
