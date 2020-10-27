@@ -21,12 +21,12 @@ import ClickEvent from '../../components/common/ClickEvent'
 import styles from '../../public/static/styles/_dev.module.scss'
 import { BASE_URL, API_ROUTE } from "../../constants/settings"
 import { getFetch, postFetch } from '../../util/common'
-import Logout from '../../components/auth/logout'
-import Login from '../../components/auth/login'
+import Logout from '../../components/auth/Logout'
+import Login from '../../components/auth/Login'
 import Loading from '../../components/common/Loading'
 
 export async function getServerSideProps() {
-  const url:string = BASE_URL + API_ROUTE.dev;
+  const url: string = BASE_URL + API_ROUTE.dev
   const json = await getFetch(url)
   const stars: number = await json.stars
 
@@ -95,9 +95,9 @@ const HooksCounter = () => {
   )
 }
 
-import { getReducksCounter } from '../../components/dev/selectors'
+import { getReducksCounter } from '../../components/dev/Selectors'
 import { useDispatch, useSelector } from 'react-redux'
-import { reducksCountUp, reducksCountDown } from '../../components/dev/actions'
+import { reducksCountUp, reducksCountDown } from '../../components/dev/Actions'
 import {sampleData} from '../../util/sample-data'
 
 const Dev: FC<sampleData> = ({ dev, stars }) => {

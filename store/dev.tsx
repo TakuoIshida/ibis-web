@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux'
 
-import { ReducksCounterReducer } from '../components/dev/reducers'
+import { ReducksCounterReducer } from '../components/dev/Reducers'
 
 // storeの本体
 // Reducerを増やすときはここに記載する

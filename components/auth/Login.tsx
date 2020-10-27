@@ -10,7 +10,8 @@ const handleSignIn = () => {
       // The signed-in user info.
       // var user = result.user
       console.log(result)
-      router.prefetch('/')
+      // topで隠すことができる
+      router.push('/', '/home')
     })
     .catch(err => {
       alert("OOps something went wrong check your console");
