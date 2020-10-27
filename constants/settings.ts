@@ -4,7 +4,7 @@ export const API_ROUTE: API_ROUTE = {
     dev: '/dev',
     search: '/article/search',
     purchase: '/article/purchase',
-    getArticle: '/article',
+    getArticle: '/article/get_article',
 } as const
 
 type API_ROUTE = { [name: string]: string }
