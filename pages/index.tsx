@@ -18,6 +18,12 @@ const TopPage: NextPage = () => {
             <a>Dev</a>
           </Link>
       </Button>
+
+      <Button variant="contained">
+          <Link href="/dev/nextApi">
+            <a>API response test</a>
+          </Link>
+      </Button>
     
       </main>
     </div>
