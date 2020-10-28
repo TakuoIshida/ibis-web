@@ -22,7 +22,7 @@ import styles from '../../public/static/styles/_dev.module.scss'
 import { BASE_URL, API_ROUTE } from "../../constants/settings"
 import { getFetch, postFetch } from '../../util/common'
 import Logout from '../../components/auth/Logout'
-import Login from '../../components/auth/Login'
+import { Login } from '../../components/auth/Login'
 import Loading from '../../components/common/Loading'
 
 export async function getServerSideProps() {

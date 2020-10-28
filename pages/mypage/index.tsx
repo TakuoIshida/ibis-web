@@ -1,5 +1,5 @@
 import { firebase } from '../../src/firebase'
-import { Props, useState } from 'react'
+import { useState } from 'react'
 import router from 'next/router'
 import { isUserLogin } from '../../util/common'
 
@@ -8,6 +8,7 @@ const index = () => {
   if (!isUserLogin()) {
     router.push('/')
   }
+  // TODO: useeffectで更新回数を減らす
   firebase.auth().onAuthStateChanged((result) => {
     if(result) {
       // This gives you a Google Access Token. You can use it to access the Google API.
