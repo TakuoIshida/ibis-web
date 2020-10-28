@@ -1,4 +1,8 @@
 import { firebase } from '../src/firebase'
+import { useContext, useEffect } from 'react'
+import { AuthContext } from '../components/auth/Auth'
+import router from 'next/router'
+import { RedoRounded } from '@material-ui/icons'
 
 export const getFetch = async (url: string) => {
     const data = await fetch(url).then((res) => res.json())
@@ -7,7 +11,6 @@ export const getFetch = async (url: string) => {
 export const postFetch = async (url: string, body: {}) => {
     // 認証チェックのためにTokenをバックエンドに渡す
     const token = await getUserToken()
-    console.log("postFetch", token)
     const params = {
         method: 'POST',
         headers: {
@@ -26,33 +29,28 @@ export const postFetch = async (url: string, body: {}) => {
 // TODO: Google認証、各種ユーザー動作のシミュレーションをして、関数をラップ化する
 
 // ユーザーのログインを判断する
-export const isUserLogin = async () => {
-    try{
-        // 現在ログインしているユーザのTokenをリフレッシュ（forceRefresh）して取得する
-        await firebase.auth().onAuthStateChanged((user) => {
-            if(user){
-                console.log("logined")
-                return true
-            }
-            console.log("login failed")
-            return false   
-        })
-       } catch (err){
-        console.log(err)
-        console.log("Did not have any token")
-        return false
-       }    
+export const isUserLogin = () => {
+    const { currentUser } = useContext(AuthContext)
+    console.log("currentUser:", currentUser)
+    useEffect(() => {
+    // currentUserが明示的にnullの場合はログイン画面へリダイレクト
+    currentUser === null && router.push("/")
+   }, [currentUser])
 }
 
 // POST前にTokenを取得する
-export const getUserToken = async () => {
-        // 現在ログインしているユーザのTokenをリフレッシュ（forceRefresh）して取得する
-        await firebase.auth().onAuthStateChanged((user) => {
-            if(user){
-            const token = user.refreshToken 
-            return token
-        }
-        })
+export const getUserToken = () => {
+    // 現在ログインしているユーザのTokenをリフレッシュ（forceRefresh）して取得する
+    const { currentUser } = useContext(AuthContext)
+    useEffect(() => {
+    // currentUserが明示的にnullの場合はログイン画面へリダイレクト
+    currentUser === null && router.push("/")
+    }, [currentUser])
+    if (currentUser?.refreshToken){
+        return currentUser.refreshToken
+    }
+    return ""
+
 }
 
 // ユーザー情報を取得する
