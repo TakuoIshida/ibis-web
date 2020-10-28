@@ -46,9 +46,6 @@ type serverProps = {
 
 
 const nextApi = ({IsSucceeded, article, searchList}: serverProps) => {
-  if (!isUserLogin()) {
-    router.push('/')
-  }
   const token = getUserToken()
   const [isPosted, setIsPosted] = useState(false)
   const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {

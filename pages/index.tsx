@@ -2,18 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
-import { Fragment, useContext, useEffect } from "react"
-import { AuthContext } from "../components/auth/Auth"
-import { firebase } from "../src/firebase"
-import router from 'next/router'
 
 const TopPage: NextPage = () => {
-  const { currentUser } = useContext(AuthContext)
-  console.log("currentUser:", currentUser)
-  useEffect(() => {
-    // currentUserが明示的にnullの場合はログイン画面へリダイレクト
-    currentUser === null && router.push("/login");
-   }, [currentUser]);
   return (
     <div id="index">
       <Head>
