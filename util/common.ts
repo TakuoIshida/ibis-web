@@ -10,7 +10,7 @@ export const getFetch = async (url: string) => {
 }
 export const postFetch = async (url: string, body: {}) => {
     // 認証チェックのためにTokenをバックエンドに渡す
-    const token = await getUserToken()
+    const token: string = getUserToken()
     const params = {
         method: 'POST',
         headers: {
@@ -40,7 +40,6 @@ export const isUserLogin = () => {
 
 // POST前にTokenを取得する
 export const getUserToken = () => {
-    // 現在ログインしているユーザのTokenをリフレッシュ（forceRefresh）して取得する
     const { currentUser } = useContext(AuthContext)
     useEffect(() => {
     // currentUserが明示的にnullの場合はログイン画面へリダイレクト
@@ -54,7 +53,16 @@ export const getUserToken = () => {
 }
 
 // ユーザー情報を取得する
-
+export const getUserInfo = () => {
+    const { currentUser } = useContext(AuthContext)
+    useEffect(() => {
+    // currentUserが明示的にnullの場合はログイン画面へリダイレクト
+    currentUser === null && router.push("/")
+    }, [currentUser])
+    if (currentUser){
+        return currentUser
+    }
+}
 
 // ページが読み込まれた時に、google認証する（初期ロード）
 // export const isOKReloadAuth = firebase.auth().getRedirectResult().then(function(result) {
