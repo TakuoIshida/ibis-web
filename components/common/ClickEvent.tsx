@@ -15,7 +15,7 @@ const SimpleAlerts: React.FC = () => {
   const classes = useStyles();
 
   const handleOnClick = (character: string) => {
-    console.log(character);
+    alert(`「${character}」 clicked`)
   };
   const _data: string[] = ["click me", "cat", "rabbit"];
 

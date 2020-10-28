@@ -1,37 +1,25 @@
-import { auth, firebase } from "../../src/firebase"
-import Button from '@material-ui/core/Button'
-import router from "next/router";
+import { FC, useEffect, useContext } from 'react'
+import Router from 'next/router'
+import { firebase } from '../../src/firebase'
+import { AuthContext } from '../auth/Auth'
+import { Button } from '@material-ui/core'
 
-const handleSignIn = () => {
-  var provider = new firebase.auth.GoogleAuthProvider()
-  auth
-    .signInWithPopup(provider)
-    .then((result) => {
-      // IDトークン取得できる
-      // const userInfo: string = result.credential.accessToken || ""
-      // console.log(userInfo)
-      router.push('/')
-    })
-    .catch(err => {
-      alert("OOps something went wrong check your console");
-      console.log(err.code);
-      console.log(err.message);
-      console.log(err.email);
-      console.log(err.credential);
-      console.log(err);
-    });
-};
+export const Login: FC = () => {
+  const { currentUser } = useContext(AuthContext);
 
-const Login = () => {
-  
+  useEffect(() => {
+    // TODO: redilect to top page
+    currentUser && Router.push('/dev')
+  }, [currentUser]);
+
+  const login = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+  }
   return (
-    <>
-      <Button variant="contained" onClick={handleSignIn}>
-      <img src="/static/img/google_logo.png" className="sns-icon" alt="Googleロゴ" width="50px" height="50px"/>
-      Sign In using google
-      </Button> 
-    </>
+     <Button onClick={login} variant="contained" color="secondary">
+      <img src="/static/img/google_logo.png" className="sns-icon" alt="Googleロゴ" width="20px" height="20px"/>
+      <span>ログイン</span>
+     </Button>
   )
 }
-
-export default Login
