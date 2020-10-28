@@ -5,6 +5,7 @@ export const API_ROUTE: API_ROUTE = {
     search: '/article/search',
     purchase: '/article/purchase',
     getArticle: '/article/get_article',
+    postArticle: '/article/post_article',
 } as const
 
 type API_ROUTE = { [name: string]: string }

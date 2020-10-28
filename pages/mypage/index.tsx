@@ -1,13 +1,12 @@
-import { isUserLogin, getUserToken} from '../../util/common'
+import { isUserLogin, getUserInfo} from '../../util/common'
 
 const index = () => {
   isUserLogin()
-  const token = getUserToken()
-  console.log(token)
+  const userInfo = getUserInfo()
   return (
   <>
     <p>mypage画面</p>
-    <div>your email: </div>
+    <div>your email: {userInfo?.email} </div>
   </>
   )
 }

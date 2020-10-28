@@ -7,23 +7,16 @@ import SearchArticle from './search_article'
 import GetArticle from './get_article'
 import { Button } from '@material-ui/core'
 import PublishIcon from '@material-ui/icons/Publish'
-import router from 'next/router'
 
-// iconが多くなる場合は、複数でimportできる
-// import { foo, bar } from '@material-ui/icons';
 // serversideのみで実行される
 export async function getServerSideProps() {
   const purchaseURL: string = BASE_URL + API_ROUTE.purchase
   const getArticleURL: string = BASE_URL + API_ROUTE.getArticle
   const searchURL: string = BASE_URL + API_ROUTE.search
   
-  const purchaseJson = await getFetch(purchaseURL)
-  const getArticleJson = await getFetch(getArticleURL)
-  const searchJson = await getFetch(searchURL)
-
-  const purchase: post_articles_article_id_purchase = await purchaseJson
-  const article: get_articles_article_id = await getArticleJson
-  const searchList: get_articles_search = await searchJson
+  const purchase: post_articles_article_id_purchase = await getFetch(purchaseURL)
+  const article: get_articles_article_id = await getFetch(getArticleURL)
+  const searchList: get_articles_search = await getFetch(searchURL)
 
   return {
     props: {
@@ -44,21 +37,25 @@ type serverProps = {
   searchList: get_articles_search,
 }
 
+// const postArticle = async() => {
+//   const postArticleURL: string = BASE_URL + API_ROUTE.postArticle
+//   const body = { ID: 1} 
+//   await postFetch(postArticleURL, body)
+//     .then(
+//       (res) => {
+//         const article = res
+//         return article
+//       })
+// }
 
 const nextApi = ({IsSucceeded, article, searchList}: serverProps) => {
-  const token = getUserToken()
   const [isPosted, setIsPosted] = useState(false)
-  const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
-    alert(token)
-    console.log(e.currentTarget.getAttribute("value"));
+  
+  const handleOnClick = async (e: React.MouseEvent<HTMLElement>) => {
     setIsPosted(!e.currentTarget.getAttribute("disabled"))
-    // Loading処理
-
-    
-    // POST処理
-
-    // HideLoading処理
-    
+    // TODO: POST処理
+    // const article = await postArticle()
+    // alert(article)
   };
   // const notion = (e: React.MouseEvent<HTMLElement>) => {
   //   console.log(e.currentTarget.getAttribute("data-item"));
