@@ -1,16 +1,10 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
-
+import SearchAppBar from '../components/common/AppBar'
 const TopPage: NextPage = () => {
   return (
     <div id="index">
-      <Head>
-        <title>This is Toppage</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
       <Button variant="contained">
           <Link href="/dev" as ="/dev">
@@ -23,6 +17,7 @@ const TopPage: NextPage = () => {
             <a>API response test</a>
           </Link>
       </Button>
+      <SearchAppBar />
     
       </main>
     </div>

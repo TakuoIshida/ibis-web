@@ -4,7 +4,6 @@ import store from '../store/dev'
 import styles from '../public/static/styles/_index.module.scss'
 import Head from 'next/head'
 import { AuthProvider } from '../components/auth/Auth'
-import Loading from '../components/common/Loading'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 Router.events.on('routeChangeStart', () => NProgress.inc())

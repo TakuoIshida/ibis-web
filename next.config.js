@@ -1,4 +1,3 @@
-
 module.exports = {
     env: {
         NEXT_PUBLIC_FIREBASE_API_KEY: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,3 +10,6 @@ module.exports = {
         BASE_URL: process.env.BASE_URL,
     },
   }
+
+const withImages = require('next-images')
+module.exports = withImages()
