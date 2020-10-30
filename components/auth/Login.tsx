@@ -18,7 +18,7 @@ export const Login: FC = () => {
   }
   return (
      <Button onClick={login} variant="contained" color="secondary">
-      <img src="/static/img/google_logo.png" className="sns-icon" alt="Googleロゴ" width="20px" height="20px"/>
+      <img src="/img/google_logo.png" className="sns-icon" alt="Googleロゴ" width="20px" height="20px"/>
       <span>ログイン</span>
      </Button>
   )

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { BASE_URL, API_ROUTE } from "../../constants/settings"
+import { BASE_URL, API_ROUTE } from "../../util/settings"
 import { getFetch, postFetch, getUserToken, isUserLogin } from '../../util/common'
 import { get_articles_article_id, get_articles_search, post_articles_article_id_purchase} from '../../util/sample-data'
 import Purchase from './purchase'

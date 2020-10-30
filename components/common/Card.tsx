@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import styles from './_card.module.scss'
 
 export default function ImgMediaCard() {
 
@@ -17,7 +16,7 @@ export default function ImgMediaCard() {
           alt="card1"
           height="140"
           // publicをrootとしてpathを書く
-          image="/static/card1.jpg"
+          image="/img/card1.jpg"
           title="card1"
         />
         <CardContent>
