@@ -2,11 +2,10 @@ import Link from 'next/link'
 import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
 import SearchAppBar from '../components/common/AppBar'
-
+import ImgCarousel from './../components/common/Carousel'
 const TopPage: NextPage = () => {
   return (
     <div id="index">
-      <main>
       <Button variant="contained">
           <Link href="/dev">
             <a>Dev</a>
@@ -19,8 +18,7 @@ const TopPage: NextPage = () => {
           </Link>
       </Button>
       <SearchAppBar />
-    
-      </main>
+      <ImgCarousel />
     </div>
   )
 }
