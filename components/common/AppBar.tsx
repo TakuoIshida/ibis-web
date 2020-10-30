@@ -14,7 +14,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
-import ibis from '../../public/ibis.svg'
 
 const SearchAppBar = () => {
   const classes = useStyles()
@@ -102,17 +101,20 @@ const SearchAppBar = () => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
-          <img height="60px" src={ibis} />
+          </IconButton> */}
+          <img height="60px" src="/ibis.svg" />
           <Typography className={classes.title} variant="h6" noWrap>
             ジャンルで探す
+          </Typography>
+          <Typography className={classes.title} variant="h6" noWrap>
+            雑誌で探す
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
