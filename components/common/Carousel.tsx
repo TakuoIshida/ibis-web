@@ -28,7 +28,7 @@ const ImgCarousel = () => {
 
 export default ImgCarousel
 
-type caroucelProp = {
+type carouselProp = {
     item: {
         id: number,
         title: string,
@@ -37,7 +37,7 @@ type caroucelProp = {
     }
 }
 
-const Item = (props: caroucelProp) =>
+const Item = (props: carouselProp) =>
 {
     return (
         <Paper>
