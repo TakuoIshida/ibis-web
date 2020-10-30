@@ -4,9 +4,9 @@ import store from '../store/dev'
 import styles from '../public/static/styles/_index.module.scss'
 import Head from 'next/head'
 import { AuthProvider } from '../components/auth/Auth'
-import Loading from '../components/common/Loading'
 import Router from 'next/router'
 import NProgress from 'nprogress'
+
 Router.events.on('routeChangeStart', () => NProgress.inc())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
@@ -18,8 +18,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <AuthProvider>
           <Head>
           {/* Import CSS for nprogress */}
+          {/* TODO: 動的にtitleを変更する */}
+          <title>title | IBiS</title>
+          <link rel="icon" href="/favicon.svg"/>
           <link rel="stylesheet" type="text/css" href="/static/styles/nprogress.css" />
-        </Head>
+          </Head>
           <div className={styles.bg_color}>
             <Component {...pageProps} />
           </div>
