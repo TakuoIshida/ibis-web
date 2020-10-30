@@ -18,8 +18,8 @@ import Alert from '../../components/common/Alert'
 import Checkbox from '../../components/common/Checkbox'
 import ClickEvent from '../../components/common/ClickEvent'
 
-import styles from '../../public/static/styles/_dev.module.scss'
-import { BASE_URL, API_ROUTE } from "../../constants/settings"
+import styles from '../../public/styles/_dev.module.scss'
+import { BASE_URL, API_ROUTE } from "../../util/settings"
 import { getFetch, postFetch } from '../../util/common'
 import Logout from '../../components/auth/Logout'
 import { Login } from '../../components/auth/Login'

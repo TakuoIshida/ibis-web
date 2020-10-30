@@ -1,5 +1,5 @@
 import { Action } from "redux"
-import { ActionTypes } from "../../constants/actionTypes"
+import { ActionTypes } from "./actionTypes"
 // 立ち位置：TypeScriptで記述する場合に使うファイルです。
 // 使い方：action, operation, reducerなどで使う型を定義しておきます。
 
