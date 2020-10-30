@@ -14,6 +14,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
+import PopUpMenu from './PopUpMenu'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import SettingsIcon from '@material-ui/icons/Settings'
+import PersonAddIcon from '@material-ui/icons/PersonAdd'
 
 const SearchAppBar = () => {
   const classes = useStyles()
@@ -22,7 +26,7 @@ const SearchAppBar = () => {
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-
+  const ganreList: string[] = ["cancer", "health"]
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
@@ -51,8 +55,10 @@ const SearchAppBar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><AccountCircle />マイページ</MenuItem>
+      <MenuItem onClick={handleMenuClose}><PersonAddIcon />会員登録</MenuItem>
+      <MenuItem onClick={handleMenuClose}><SettingsIcon />設定</MenuItem>
+      <MenuItem onClick={handleMenuClose}><ExitToAppIcon />ログアウト</MenuItem>
     </Menu>
   )
 
@@ -69,19 +75,17 @@ const SearchAppBar = () => {
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+          <AccountCircle />
         </IconButton>
-        <p>Messages</p>
+        <p>マイページ</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
+          <PersonAddIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <p>会員登録</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -90,9 +94,24 @@ const SearchAppBar = () => {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <Badge badgeContent={4} color="secondary">
+          <SettingsIcon />
+          </Badge>
         </IconButton>
-        <p>Profile</p>
+        <p>設定</p>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <Badge badgeContent={4} color="secondary">
+          <ExitToAppIcon />
+          </Badge>
+        </IconButton>
+        <p>ログアウト</p>
       </MenuItem>
     </Menu>
   )
@@ -106,16 +125,12 @@ const SearchAppBar = () => {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-          >
+            >
             <MenuIcon />
           </IconButton> */}
           <img height="60px" src="/ibis.svg" />
-          <Typography className={classes.title} variant="h6" noWrap>
-            ジャンルで探す
-          </Typography>
-          <Typography className={classes.title} variant="h6" noWrap>
-            雑誌で探す
-          </Typography>
+          <PopUpMenu title="ジャンルで探す" ganreList={ganreList}/> 
+          <PopUpMenu title="雑誌で探す" ganreList={ganreList}/> 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -131,16 +146,6 @@ const SearchAppBar = () => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"
