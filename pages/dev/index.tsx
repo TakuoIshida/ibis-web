@@ -12,17 +12,17 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import Icon from '@material-ui/core/Icon'
 import SaveIcon from '@material-ui/icons/Save'
-import Table from '../../components/common/Table'
-import Alert from '../../components/common/Alert'
-import Checkbox from '../../components/common/Checkbox'
-import ClickEvent from '../../components/common/ClickEvent'
+import Table from '../../components/common/DevTable'
+import Alert from '../../components/common/DevAlert'
+import Checkbox from '../../components/common/DevCheckbox'
+import ClickEvent from '../../components/common/DevClickEvent'
 
 import styles from '../../public/styles/_dev.module.scss'
 import { BASE_URL, API_ROUTE } from "../../util/settings"
 import { getFetch, postFetch } from '../../util/common'
 import Logout from '../../components/auth/Logout'
 import { Login } from '../../components/auth/Login'
-import Loading from '../../components/common/Loading'
+import Loading from '../../components/common/DevLoading'
 
 export async function getServerSideProps() {
   const url: string = BASE_URL + API_ROUTE.dev

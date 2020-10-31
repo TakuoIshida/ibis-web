@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
-import SearchAppBar from '../components/common/AppBar'
-import AbstCarousel from './../components/common/Carousel'
+import SearchAppBar from '../components/organisms/AppBar'
+import AbstCarousel from '../components/organisms/Carousel'
 import styles from '../public/styles/_index.module.scss'
-import Devider from '../components/common/Devider'
+import Devider from '../components/atoms/Devider'
 
 const TopPage: NextPage = () => {
   return (

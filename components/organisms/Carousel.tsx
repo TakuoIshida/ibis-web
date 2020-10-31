@@ -1,7 +1,5 @@
-import React from 'react'
 import Carousel from 'react-material-ui-carousel'
-import {Paper, Button} from '@material-ui/core'
-import AbstCard from './AbstCard'
+import AbstCard from '../molcules/AbstCard'
 
 type cardsType = {
     id: number,
@@ -36,5 +34,3 @@ const AbstCarousel = () => {
 }
 
 export default AbstCarousel
-
-// ※CaroucelのCardとCategory別に表示しているCardを共通化するかは、未定
