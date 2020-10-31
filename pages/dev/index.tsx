@@ -94,9 +94,9 @@ const HooksCounter = () => {
   )
 }
 
-import { getReducksCounter } from '../../components/dev/Selectors'
+import { getReducksCounter } from '../../re-ducks/dev/Selectors'
 import { useDispatch, useSelector } from 'react-redux'
-import { reducksCountUp, reducksCountDown } from '../../components/dev/Actions'
+import { reducksCountUp, reducksCountDown } from '../../re-ducks/dev/Actions'
 import {sampleData} from '../../util/sample-data'
 
 const Dev: FC<sampleData> = ({ dev, stars }) => {
