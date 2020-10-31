@@ -44,9 +44,10 @@ const PopUpMenu = ({title, ganreList}: Menu) => {
           horizontal: 'center',
         }}
       >
-          {ganreList.map(val => {
-              return (<MenuItem onClick={handleClose}>{val}</MenuItem>)
-          })}
+          {
+            ganreList.map((val, i) => 
+            <MenuItem key={i} onClick={handleClose}>{val}</MenuItem>
+            )}
       </Popover>
     </div>
   )

@@ -3,6 +3,9 @@ import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
 import SearchAppBar from '../components/common/AppBar'
 import AbstCarousel from './../components/common/Carousel'
+import styles from '../public/styles/_index.module.scss'
+import Devider from '../components/common/Devider'
+
 const TopPage: NextPage = () => {
   return (
     <div id="index">
@@ -19,6 +22,7 @@ const TopPage: NextPage = () => {
       </Button>
       <SearchAppBar />
       <AbstCarousel />
+      <Devider />
     </div>
   )
 }
