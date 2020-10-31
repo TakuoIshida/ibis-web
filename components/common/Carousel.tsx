@@ -1,50 +1,40 @@
-import React from 'react';
+import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import {Paper, Button} from '@material-ui/core'
+import AbstCard from './AbstCard'
 
-const ImgCarousel = () => {
+type cardsType = {
+    id: number,
+    title: string,
+    content: string,
+    imageId: number,
+}
+const AbstCarousel = () => {
     
-    var items = [
+    const cards: cardsType[] = [
         {
             id: 1,
             title: "abstract title",
-            content: "COVID",
+            content: "this is content",
             imageId: 1,
         },
         {
             id: 2,
             title: "abstract title2",
-            content: "COVID2",
+            content: "this is content2",
             imageId: 2,
         }
     ]
     
     return (
         <Carousel>
-            { items.map( (item, i) => <Item key={i} item={item} /> ) }
+            { 
+                cards.map( (card, i) => <AbstCard key={i} card={card} /> )
+            }
         </Carousel>
     )
 }
 
-export default ImgCarousel
+export default AbstCarousel
 
-type carouselProp = {
-    item: {
-        id: number,
-        title: string,
-        content: string,
-        imageId: number,
-    }
-}
-
-const Item = (props: carouselProp) =>
-{
-    return (
-        <Paper>
-            <h2>{props.item.id}</h2>
-            <h2>{props.item.title}</h2>
-            <p>{props.item.content}</p>
-            <img height="60px" src={`/img/${props.item.imageId}.jpg`} />
-        </Paper>
-    )
-}
+// ※CaroucelのCardとCategory別に表示しているCardを共通化するかは、未定

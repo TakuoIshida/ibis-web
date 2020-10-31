@@ -13,7 +13,7 @@ import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import Icon from '@material-ui/core/Icon'
 import SaveIcon from '@material-ui/icons/Save'
 import Table from '../../components/common/Table'
-import Card from '../../components/common/Card'
+import AbstCard from '../../components/common/AbstCard'
 import Alert from '../../components/common/Alert'
 import Checkbox from '../../components/common/Checkbox'
 import ClickEvent from '../../components/common/ClickEvent'
@@ -220,7 +220,7 @@ const Dev: FC<sampleData> = ({ dev, stars }) => {
       <Divider />
       <Table />
       <Divider />
-      <Card />
+      <AbstCard />
       <Divider />
       <Alert />
       <Divider />
