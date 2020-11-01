@@ -1,5 +1,5 @@
 import Carousel from 'react-material-ui-carousel'
-import CrouselCard from '../molcules/CrouselCard'
+import CrouselCard from './CrouselCard'
 
 type cardsType = {
     id: number,

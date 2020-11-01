@@ -1,6 +1,6 @@
 import { firebase } from '../src/firebase'
 import { useContext, useEffect } from 'react'
-import { AuthContext } from '../components/auth/Auth'
+import { AuthContext } from './auth/Auth'
 import router from 'next/router'
 import { RedoRounded } from '@material-ui/icons'
 

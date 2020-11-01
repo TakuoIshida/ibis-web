@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import store from '../store/dev'
 import styles from '../public/styles/_index.module.scss'
 import Head from 'next/head'
-import { AuthProvider } from '../components/auth/Auth'
+import { AuthProvider } from '../util/auth/Auth'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
