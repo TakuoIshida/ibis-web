@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import Typography from '@material-ui/core/Typography'
 
+type footerContents = { title: string, url: string }[]
+
 const Footer = () => {
     // service, news, terms
-    const footerContents = [
+    const footerContents: footerContents = [
         { title: "サービス", url: "/" },
         { title: "お知らせ", url: "/" },
         { title: "規約", url: "/" },
-    ] as const
+    ]
 
     return (
         <>
