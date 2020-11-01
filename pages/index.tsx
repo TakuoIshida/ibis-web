@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
-import SearchAppBar from '../components/organisms/AppBar'
-import AbstCarousel from '../components/organisms/Carousel'
-import Devider from '../components/atoms/Devider'
-import CategoryCardGroup from '../components/organisms/CategoryCardGroup'
-import Footer from '../components/common/Footer'
+import SearchAppBar from '../re-ducks/commons/components/AppBar'
+import AbstCarousel from '../re-ducks/carousel/components/Carousel'
+import Devider from '../re-ducks/commons/components/Devider'
+import CategoryCardGroup from '../re-ducks/categoryCards/components/CategoryCardGroup'
+import Footer from '../re-ducks/commons/components/Footer'
 
 const TopPage: NextPage = () => {
 

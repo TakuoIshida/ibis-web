@@ -1,11 +1,11 @@
 import { FC, useEffect, useContext } from 'react'
 import Router from 'next/router'
 import { firebase } from '../../src/firebase'
-import { AuthContext } from '../auth/Auth'
+import { AuthContext } from './Auth'
 import { Button } from '@material-ui/core'
 
 export const Login: FC = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext)
 
   useEffect(() => {
     // TODO: redilect to top page

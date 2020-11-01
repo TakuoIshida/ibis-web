@@ -12,17 +12,17 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import Icon from '@material-ui/core/Icon'
 import SaveIcon from '@material-ui/icons/Save'
-import Table from '../../components/common/DevTable'
-import Alert from '../../components/common/DevAlert'
-import Checkbox from '../../components/common/DevCheckbox'
-import ClickEvent from '../../components/common/DevClickEvent'
+import Table from '../../re-ducks/dev/components/DevTable'
+import Alert from '../../re-ducks/dev/components/DevAlert'
+import Checkbox from '../../re-ducks/dev/components/DevCheckbox'
+import ClickEvent from '../../re-ducks/dev/components/DevClickEvent'
+import Loading from '../../re-ducks/dev/components/DevLoading'
 
 import styles from '../../public/styles/_dev.module.scss'
 import { BASE_URL, API_ROUTE } from "../../util/settings"
 import { get, post } from '../../util/common'
-import Logout from '../../components/auth/Logout'
-import { Login } from '../../components/auth/Login'
-import Loading from '../../components/common/DevLoading'
+import Logout from '../../util/auth/Logout'
+import { Login } from '../../util/auth/Login'
 
 export async function getServerSideProps() {
   const url: string = BASE_URL + API_ROUTE.dev
