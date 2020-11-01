@@ -129,8 +129,8 @@ const SearchAppBar = () => {
             <MenuIcon />
           </IconButton> */}
           <img height="60px" src="/ibis.svg" />
-          <PopUpMenu title="ジャンルで探す" ganreList={ganreList}/> 
-          <PopUpMenu title="雑誌で探す" ganreList={ganreList}/> 
+          <PopUpMenu title="ジャンル" ganreList={ganreList}/> 
+          <PopUpMenu title="雑誌" ganreList={ganreList}/> 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

@@ -1,5 +1,5 @@
 import Carousel from 'react-material-ui-carousel'
-import AbstCard from '../molcules/AbstCard'
+import CrouselCard from '../molcules/CrouselCard'
 
 type cardsType = {
     id: number,
@@ -13,13 +13,13 @@ const AbstCarousel = () => {
         {
             id: 1,
             title: "abstract title",
-            content: "this is content",
+            content: "this is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is content",
             imageId: 1,
         },
         {
             id: 2,
             title: "abstract title2",
-            content: "this is content2",
+            content: "this is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is contentthis is content",
             imageId: 2,
         }
     ]
@@ -27,7 +27,7 @@ const AbstCarousel = () => {
     return (
         <Carousel>
             { 
-                cards.map( (card, i) => <AbstCard key={i} card={card} /> )
+                cards.map( (card, i) => <CrouselCard key={i} card={card} /> )
             }
         </Carousel>
     )
