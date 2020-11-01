@@ -4,6 +4,7 @@ import Popover from '@material-ui/core/Popover'
 import MenuItem from '@material-ui/core/MenuItem'
 import Fade from '@material-ui/core/Fade'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Typography from '@material-ui/core/Typography'
 
 type Menu = {
     title: string,
@@ -25,7 +26,7 @@ const PopUpMenu = ({title, ganreList}: Menu) => {
   return (
     <div>
       <Button aria-controls="pop-up-menu" aria-haspopup="true" onMouseEnter={handleClick}>
-        {title}
+        <Typography>{title}で探す</Typography>
         <ExpandMoreIcon />
       </Button>
       <Popover
@@ -44,9 +45,10 @@ const PopUpMenu = ({title, ganreList}: Menu) => {
           horizontal: 'center',
         }}
       >
-          {ganreList.map(val => {
-              return (<MenuItem onClick={handleClose}>{val}</MenuItem>)
-          })}
+          {
+            ganreList.map((val, i) => 
+            <MenuItem key={i} onClick={handleClose}>{val}</MenuItem>
+            )}
       </Popover>
     </div>
   )

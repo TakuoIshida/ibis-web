@@ -14,7 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
-import PopUpMenu from './PopUpMenu'
+import PopUpMenu from '../molcules/PopUpMenu'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import SettingsIcon from '@material-ui/icons/Settings'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
@@ -129,8 +129,8 @@ const SearchAppBar = () => {
             <MenuIcon />
           </IconButton> */}
           <img height="60px" src="/ibis.svg" />
-          <PopUpMenu title="ジャンルで探す" ganreList={ganreList}/> 
-          <PopUpMenu title="雑誌で探す" ganreList={ganreList}/> 
+          <PopUpMenu title="ジャンル" ganreList={ganreList}/> 
+          <PopUpMenu title="雑誌" ganreList={ganreList}/> 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

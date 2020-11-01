@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import styles from '../../public/styles/_carousel_card.module.scss'
 
 type carouselProp = {
   card: {
@@ -15,16 +16,15 @@ type carouselProp = {
   }
 }
 
-const AbstCard = (props: carouselProp) =>  {
+const CrouselCard = (props: carouselProp) =>  {
   
   return (
-    <Card className="width">
+    <Card className={styles.width} >
       <CardActionArea>
         <CardMedia
           component="img"
           alt="card1"
-          height="140"
-          width="140"
+          className={styles.height}
           // publicをrootとしてpathを書く
           image={`/img/${props.card.imageId}.jpg`}
           title="card1"
@@ -50,4 +50,4 @@ const AbstCard = (props: carouselProp) =>  {
   )
 }
 
-export default AbstCard
+export default CrouselCard
