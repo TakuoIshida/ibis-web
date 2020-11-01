@@ -3,10 +3,12 @@ import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
 import SearchAppBar from '../components/organisms/AppBar'
 import AbstCarousel from '../components/organisms/Carousel'
-import styles from '../public/styles/_index.module.scss'
 import Devider from '../components/atoms/Devider'
+import CategoryCardGroup from '../components/organisms/CategoryCardGroup'
+import Footer from '../components/common/Footer'
 
 const TopPage: NextPage = () => {
+
   return (
     <div id="index">
       <Button variant="contained">
@@ -23,6 +25,9 @@ const TopPage: NextPage = () => {
       <SearchAppBar />
       <AbstCarousel />
       <Devider />
+      <CategoryCardGroup />
+      <Devider />
+      <Footer />
     </div>
   )
 }
