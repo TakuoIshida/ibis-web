@@ -19,14 +19,14 @@ import ClickEvent from '../../components/common/DevClickEvent'
 
 import styles from '../../public/styles/_dev.module.scss'
 import { BASE_URL, API_ROUTE } from "../../util/settings"
-import { getFetch, postFetch } from '../../util/common'
+import { get, post } from '../../util/common'
 import Logout from '../../components/auth/Logout'
 import { Login } from '../../components/auth/Login'
 import Loading from '../../components/common/DevLoading'
 
 export async function getServerSideProps() {
   const url: string = BASE_URL + API_ROUTE.dev
-  const json = await getFetch(url)
+  const json = await get(url)
   const stars: number = await json.stars
 
   // propsで値が返される→props.starsで取得できる

@@ -4,11 +4,11 @@ import { AuthContext } from '../components/auth/Auth'
 import router from 'next/router'
 import { RedoRounded } from '@material-ui/icons'
 
-export const getFetch = async (url: string) => {
+export const get = async (url: string) => {
     const data = await fetch(url).then((res) => res.json())
     return data
 }
-export const postFetch = async (url: string, body: {}) => {
+export const post = async (url: string, body: {}) => {
     // 認証チェックのためにTokenをバックエンドに渡す
     const token: string = getUserToken()
     const params = {
