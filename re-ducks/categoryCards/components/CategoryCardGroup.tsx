@@ -6,7 +6,27 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
 
 const CategoryCardGroup = () => {
-
+    // TODO: useContext を使う
+    const cards = [
+        {
+            id: 1,
+            title: "title1",
+            content: "content1",
+            imageId: 1,
+        },
+        {
+            id: 2,
+            title: "title2",
+            content: "content2",
+            imageId: 2,
+        },
+        {
+            id: 3,
+            title: "title3",
+            content: "content3",
+            imageId: 3,
+        }
+    ]
     return (
         <div>
             <section>
@@ -15,11 +35,12 @@ const CategoryCardGroup = () => {
                     <Button> See All<NavigateNextIcon /> </Button>
                 </div>
                 <div>
-                    {/* TODO: CardをLsitで表示 */}
                     <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
+                    {cards.map( (card, i) => {
+                        return(
+                        <CategoryCard key={i} card={card}/>
+                        )
+                    })}
                     </ul>
                 </div>
             </section>
