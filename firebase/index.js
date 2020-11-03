@@ -1,5 +1,5 @@
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase/app"
+import "firebase/auth"
 const config = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -8,9 +8,10 @@ const config = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
-};
-if (!firebase.apps.length) {
-  firebase.initializeApp(config);
 }
-const auth = firebase.auth();
-export { auth, firebase };
+if (!firebase.apps.length) {
+  firebase.initializeApp(config)
+}
+const auth = firebase.auth()
+const googleProvider = new firebase.auth.GoogleAuthProvider()
+export { auth, firebase, googleProvider }
