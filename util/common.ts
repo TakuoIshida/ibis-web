@@ -1,4 +1,4 @@
-import { firebase } from '../firebase'
+import { auth, googleProvider, firebase } from '../firebase'
 import { useContext, useEffect } from 'react'
 import { AuthContext } from './auth/Auth'
 import router from 'next/router'
@@ -85,3 +85,46 @@ export const getUserInfo = () => {
 //     var credential = error.credential;
 //     // ...
 //   })
+
+// popup login
+export const popupLogin = () => {
+    auth.signInWithPopup(googleProvider).then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        // The signed-in user info.
+        if(result.user) {
+            router.push("/")
+        }
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        console.log(error)
+        alert("redilect to top")
+        router.push("/")
+      });
+}
+
+export const login = () => {
+    auth.signInWithPopup(googleProvider)
+}
+
+export const logout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        alert("Logout successful")
+        router.push('/')
+      })
+      .catch((err) => {
+        alert("OOps something went wrong check your console")
+        console.log(err)
+      })
+  }
+
+// google 新規作成
+// Loginボタンをおした時点で、ユーザーがGoogleアカウントを持っていなければ、新規作成にリダイレクトさせる
+// Loginの実装で、Google側で対応されている。（動作確認済み）
+  
+// google認証後、ユーザーを切り替えるため、Back→再認証→エラー
+// TODO: The requested action is invalid 
+
+// 

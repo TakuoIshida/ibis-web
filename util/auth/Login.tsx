@@ -1,8 +1,8 @@
 import { FC, useEffect, useContext } from 'react'
 import Router from 'next/router'
-import { firebase } from '../../firebase'
 import { AuthContext } from './Auth'
 import { Button } from '@material-ui/core'
+import { popupLogin } from '../common'
 
 export const Login: FC = () => {
   const { currentUser } = useContext(AuthContext)
@@ -12,14 +12,12 @@ export const Login: FC = () => {
     currentUser && Router.push('/dev')
   }, [currentUser])
 
-  const login = () => {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signInWithRedirect(provider)
-  }
   return (
-     <Button onClick={login} variant="contained" color="secondary">
+    <>
+     <Button onClick={popupLogin} variant="contained" color="secondary">
       <img src="/img/google_logo.png" className="sns-icon" alt="Googleロゴ" width="20px" height="20px"/>
-      <span>ログイン</span>
+      <span>Login</span>
      </Button>
+    </>
   )
 }
