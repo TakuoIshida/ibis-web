@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@material-ui/core'
 import { NextPage } from 'next'
-import SearchAppBar from '../re-ducks/commons/components/AppBar'
 import AbstCarousel from '../re-ducks/carousel/components/Carousel'
 import Devider from '../re-ducks/commons/components/Devider'
 import CategoryCardGroup from '../re-ducks/categoryCards/components/CategoryCardGroup'
@@ -22,7 +21,6 @@ const TopPage: NextPage = () => {
             <a>API response test</a>
           </Link>
       </Button>
-      <SearchAppBar />
       <AbstCarousel />
       <Devider />
       <CategoryCardGroup />

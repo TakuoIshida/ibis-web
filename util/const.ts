@@ -13,5 +13,14 @@ export const ganres = [
 ] as const
 
 
-type ganres = typeof ganres[number];
-type publishers = typeof publishers[number];
+type ganres = typeof ganres[number]
+type publishers = typeof publishers[number]
+
+// パンくずリスト
+export const routingMapping: routingMappingType = {
+    '/': { title: 'トップページ' },
+    '/dev': { title: '開発画面' },
+    '/dev/next_api': { title: 'API' },
+}
+
+type routingMappingType = { [name: string]: {title: string} }
