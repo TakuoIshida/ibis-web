@@ -6,6 +6,8 @@ import Head from 'next/head'
 import { AuthProvider } from '../util/auth/Auth'
 import Router from 'next/router'
 import NProgress from 'nprogress'
+import SearchAppBar from '../re-ducks/commons/components/AppBar'
+import PageBreadcrumbs from '../re-ducks/commons/components/Breadcrumb'
 
 Router.events.on('routeChangeStart', () => NProgress.inc())
 Router.events.on('routeChangeComplete', () => NProgress.done())
@@ -24,6 +26,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           <link rel="stylesheet" type="text/css" href="/styles/nprogress.css" />
           </Head>
           <div className={styles.bg_color}>
+            <SearchAppBar />
+            <PageBreadcrumbs />
             <Component {...pageProps} />
           </div>
         </AuthProvider>
