@@ -1,8 +1,6 @@
-import { firebase } from '../src/firebase'
 import { useContext, useEffect } from 'react'
 import { AuthContext } from './auth/Auth'
 import router from 'next/router'
-import { RedoRounded } from '@material-ui/icons'
 
 export const get = async (url: string) => {
     const data = await fetch(url).then((res) => res.json())
