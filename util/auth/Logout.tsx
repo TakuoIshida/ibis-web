@@ -1,19 +1,19 @@
 import React from 'react'
-import { auth } from "../../src/firebase";
+import { auth } from "../../firebase"
 import Button from '@material-ui/core/Button'
 import router  from 'next/router'
 const handleLogout = () => {
   auth
     .signOut()
     .then(function() {
-      alert("Logout successful");
+      alert("Logout successful")
       router.push('/')
     })
     .catch(function(err) {
-      alert("OOps something went wrong check your console");
-      console.log(err);
-    });
-};
+      alert("OOps something went wrong check your console")
+      console.log(err)
+    })
+}
 const Logout = () => {
   return (
     <>

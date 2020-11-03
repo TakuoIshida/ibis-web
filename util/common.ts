@@ -1,4 +1,4 @@
-import { firebase } from '../src/firebase'
+import { firebase } from '../firebase'
 import { useContext, useEffect } from 'react'
 import { AuthContext } from './auth/Auth'
 import router from 'next/router'
@@ -31,6 +31,7 @@ export const post = async (url: string, body: {}) => {
 // ユーザーのログインを判断する
 export const isUserLogin = () => {
     const { currentUser } = useContext(AuthContext)
+    // 開発用にコンソール画面に表示
     console.log("currentUser:", currentUser)
     useEffect(() => {
     // currentUserが明示的にnullの場合はログイン画面へリダイレクト

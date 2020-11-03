@@ -1,6 +1,6 @@
 import { FC, useEffect, useContext } from 'react'
 import Router from 'next/router'
-import { firebase } from '../../src/firebase'
+import { firebase } from '../../firebase'
 import { AuthContext } from './Auth'
 import { Button } from '@material-ui/core'
 
@@ -10,11 +10,11 @@ export const Login: FC = () => {
   useEffect(() => {
     // TODO: redilect to top page
     currentUser && Router.push('/dev')
-  }, [currentUser]);
+  }, [currentUser])
 
   const login = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithRedirect(provider)
   }
   return (
      <Button onClick={login} variant="contained" color="secondary">
