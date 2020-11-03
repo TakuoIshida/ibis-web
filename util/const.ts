@@ -21,6 +21,7 @@ export const routingMapping: routingMappingType = {
     '/': { title: 'トップページ' },
     '/dev': { title: '開発画面' },
     '/dev/next_api': { title: 'API' },
+    '/mypage': { title: 'Mypage' },
 }
 
 type routingMappingType = { [name: string]: {title: string} }

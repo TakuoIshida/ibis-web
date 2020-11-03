@@ -12,13 +12,13 @@ const TopPage: NextPage = () => {
     <div id="index">
       <Button variant="contained">
           <Link href="/dev">
-            <a>Dev</a>
+            Dev
           </Link>
       </Button>
 
       <Button variant="contained">
           <Link href="/dev/next_api">
-            <a>API response test</a>
+            API response test
           </Link>
       </Button>
       <AbstCarousel />
