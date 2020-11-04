@@ -23,6 +23,7 @@ import { BASE_URL, API_ROUTE } from "../../util/settings"
 import { get, post } from '../../util/common'
 import Logout from '../../util/auth/Logout'
 import { Login } from '../../util/auth/Login'
+import ClipBoard from '../../re-ducks/commons/components/ClipBoard'
 
 export async function getServerSideProps() {
   const url: string = BASE_URL + API_ROUTE.dev
@@ -216,6 +217,8 @@ const Dev: FC<sampleData> = ({ dev, stars }) => {
           Save
       </Button>
       </div>
+      <Divider />
+      <ClipBoard reference="This text is copied when clip is clicked."/>
       <Divider />
       <Table />
       <Divider />
