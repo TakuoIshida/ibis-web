@@ -1,7 +1,9 @@
-# このレポジトリについて
-ibisのサービスのフロント部分です。
+Overview
+ibisのフロントです。
 
-# 使い方
+## Description
+
+## Usage
 .env ファイルに以下の値を定義してください。
 
 NEXT_PUBLIC_FIREBASE_API_KEY=hogehoge
@@ -18,12 +20,12 @@ STRIPE_KEY=hogehoge
 修正してください。
 https://github.com/IBis-academic/ibis-docker-main
 
+## Install
 npm ci
 npm run dev
 
-#デプロイ先
-vercel
-https://vercel.com/dashboard
-
-# Author
+## Licence
+以下に記載。
+https://github.com/TakuoIshida/ibis-web/blob/master/LICENSE
+## Author
 ishida takuo
