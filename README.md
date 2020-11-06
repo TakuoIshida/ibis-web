@@ -13,6 +13,7 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=hogehoge
 NEXT_PUBLIC_FIREBASE_APP_ID=hogehoge
 BASE_URL=http://localhost:3000
 STRIPE_KEY=hogehoge
+
 ※ibis-bffに接続する場合は、BASE_URLをibis_docker_main記載のPORTに
 修正してください。
 https://github.com/IBis-academic/ibis-docker-main
