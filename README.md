@@ -1,7 +1,5 @@
-Overview
-ibisのフロントです。
-
 ## Description
+ibisのフロントです。
 
 ## Usage
 .env ファイルに以下の値を定義してください。
