@@ -25,7 +25,7 @@ import Logout from '../../util/auth/Logout'
 import { Login } from '../../util/auth/Login'
 import ClipBoard from '../../re-ducks/commons/components/ClipBoard'
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const url: string = BASE_URL + API_ROUTE.dev
   const json = await get(url)
   const stars: number = await json.stars
@@ -37,7 +37,8 @@ export async function getServerSideProps() {
       dev: {
         textbox: 'propsの値',
       }
-   }
+   },
+   revalidate: 1,
   }
 }
 

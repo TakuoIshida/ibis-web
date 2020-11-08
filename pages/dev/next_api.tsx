@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core'
 import PublishIcon from '@material-ui/icons/Publish'
 
 // serversideのみで実行される
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const purchaseURL: string = BASE_URL + API_ROUTE.purchase
   const getArticleURL: string = BASE_URL + API_ROUTE.getArticle
   const searchURL: string = BASE_URL + API_ROUTE.search
@@ -23,7 +23,8 @@ export async function getServerSideProps() {
       IsSucceeded: purchase.IsSucceeded,
       article: article,
       searchList: searchList,
-   }
+   },
+   revalidate: 1,
   }
 }
 // Build時にクライアントサイドで実行される（Loadingなど、クライアントサイドで実行したいものをいれる。?)
