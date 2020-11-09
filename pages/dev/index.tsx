@@ -25,7 +25,7 @@ import Logout from '../../util/auth/Logout'
 import { Login } from '../../util/auth/Login'
 import ClipBoard from '../../re-ducks/commons/components/ClipBoard'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const url: string = BASE_URL + API_ROUTE.dev
   const json = await get(url)
   const stars: number = await json.stars

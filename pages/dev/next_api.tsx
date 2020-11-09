@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core'
 import PublishIcon from '@material-ui/icons/Publish'
 
 // serversideのみで実行される
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const purchaseURL: string = BASE_URL + API_ROUTE.purchase
   const getArticleURL: string = BASE_URL + API_ROUTE.getArticle
   const searchURL: string = BASE_URL + API_ROUTE.search
@@ -27,27 +27,12 @@ export async function getStaticProps() {
    revalidate: 1,
   }
 }
-// Build時にクライアントサイドで実行される（Loadingなど、クライアントサイドで実行したいものをいれる。?)
-// export const getInitialProps = async () => {
-  
-// }
 
 type serverProps = {
   IsSucceeded: boolean,
   article: get_articles_article_id,
   searchList: get_articles_search,
 }
-
-// const postArticle = async() => {
-//   const postArticleURL: string = BASE_URL + API_ROUTE.postArticle
-//   const body = { ID: 1} 
-//   await postFetch(postArticleURL, body)
-//     .then(
-//       (res) => {
-//         const article = res
-//         return article
-//       })
-// }
 
 const nextApi = ({IsSucceeded, article, searchList}: serverProps) => {
   const [isPosted, setIsPosted] = useState(false)
