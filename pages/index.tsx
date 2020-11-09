@@ -18,7 +18,7 @@ const TopPage: NextPage = () => {
 
       <Button variant="contained">
           <Link href="/dev/next_api">
-            API response test
+            Next.js API res test
           </Link>
       </Button>
 
