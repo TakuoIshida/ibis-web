@@ -23,8 +23,7 @@ export async function getServerSideProps() {
       IsSucceeded: purchase.IsSucceeded,
       article: article,
       searchList: searchList,
-   },
-   revalidate: 1,
+   }
   }
 }
 
