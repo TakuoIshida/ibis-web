@@ -45,6 +45,6 @@
     "@types/react": "16.9.52",
     "@types/react-redux": "7.1.9",
     "@types/redux-logger": "3.0.8",
-    "typescript-plugin-css-modules": "2.7.0"
+    "typescript-plugin-css-modules": "2.8.0"
   }
 }
