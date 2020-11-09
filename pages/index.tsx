@@ -21,6 +21,12 @@ const TopPage: NextPage = () => {
             API response test
           </Link>
       </Button>
+
+      <Button variant="contained">
+          <Link href="/ssg">
+          SSG test
+          </Link>
+      </Button>
       <AbstCarousel />
       <Devider />
       <CategoryCardGroup />

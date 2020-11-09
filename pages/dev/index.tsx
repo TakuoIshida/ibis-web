@@ -37,7 +37,8 @@ export async function getServerSideProps() {
       dev: {
         textbox: 'propsの値',
       }
-   }
+   },
+   revalidate: 1,
   }
 }
 

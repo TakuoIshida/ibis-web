@@ -23,30 +23,16 @@ export async function getServerSideProps() {
       IsSucceeded: purchase.IsSucceeded,
       article: article,
       searchList: searchList,
-   }
+   },
+   revalidate: 1,
   }
 }
-// Build時にクライアントサイドで実行される（Loadingなど、クライアントサイドで実行したいものをいれる。?)
-// export const getInitialProps = async () => {
-  
-// }
 
 type serverProps = {
   IsSucceeded: boolean,
   article: get_articles_article_id,
   searchList: get_articles_search,
 }
-
-// const postArticle = async() => {
-//   const postArticleURL: string = BASE_URL + API_ROUTE.postArticle
-//   const body = { ID: 1} 
-//   await postFetch(postArticleURL, body)
-//     .then(
-//       (res) => {
-//         const article = res
-//         return article
-//       })
-// }
 
 const nextApi = ({IsSucceeded, article, searchList}: serverProps) => {
   const [isPosted, setIsPosted] = useState(false)
