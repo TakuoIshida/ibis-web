@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 import { get } from '../../../util/common'
-import { BASE_URL, API_ROUTE} from '../../../util/settings'
+import { BASE_URL } from '../../../util/settings'
 import { ArticlesArticleId } from '../../../util//sample-data'
 
 export async function getServerSideProps(props: any) {
     // props.query = { article_id: '1' } でわたってくる
     const { article_id } = props.query
-    const url: string = BASE_URL + API_ROUTE.getArticle + `/${article_id}`
+    const url: string = BASE_URL + `/articles/${article_id}`
     const data = await get(url)
 
     return {
@@ -21,7 +21,6 @@ type propsType = {
 const article = (props: propsType) => {
     const router = useRouter()
     const { article_id } = router.query
-    
     console.log(props)
     return (
         <>

@@ -3,14 +3,15 @@ import { Button } from '@material-ui/core'
 import PublishIcon from '@material-ui/icons/Publish'
 import { FC, useState } from 'react'
 import { post } from '../../../util/common'
-import { BASE_URL, API_ROUTE } from '../../../util/settings'
+import { BASE_URL } from '../../../util/settings'
 
-const Purchase = () => {
+const Purchase = (props: any) => {
   const [isPosted, setIsPosted] = useState(false)
   
   const handleOnClick = async (e: React.MouseEvent<HTMLElement>) => {
     setIsPosted(!e.currentTarget.getAttribute("disabled"))
     // TODO: POST処理
+    console.log(props)
   // const purchaseURL: string = BASE_URL + '/articles/1/purchase'
   // TODO: upppeerCaseにする？
   // const body = {article_id: 1}
