@@ -3,11 +3,9 @@ import { useContext, useEffect } from 'react'
 import { AuthContext } from './auth/Auth'
 import router from 'next/router'
 
-export const get = async (url: string, body?: {}) => {
-    const params = {
-        method: 'GET',
-        body: JSON.stringify(body)}
-    const data = await fetch(url, params).then((res) => res.json())
+// TODO: request_paramsの設定
+export const get = async (url: string) => {
+    const data = await fetch(url).then((res) => res.json())
     return data
 }
 export const post = async (url: string, body: {}) => {
@@ -15,6 +13,7 @@ export const post = async (url: string, body: {}) => {
     // const token: string = getUserToken()
     const params = {
         method: 'POST',
+        // TODO:toekn認証
         // headers: {
             // 'Content-Type': 'application/json',
             // 'authorization': 'Bearer'+ token

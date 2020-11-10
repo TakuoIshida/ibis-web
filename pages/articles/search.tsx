@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import { get } from '../../util/common'
-import { BASE_URL, API_ROUTE} from '../../util/settings'
+import { BASE_URL } from '../../util/settings'
 import { ArticleList } from '../../util/sample-data'
 
 export async function getServerSideProps() {
-    // TODO: textボックスを入れて、任意の値をGETする
-    const url: string = BASE_URL + API_ROUTE.searchArticles + "?keyword=test"
+    // TODO: textボックスを入れて、任意の値をGETし、bodyにいれる
+    const url: string = BASE_URL + '/articles/search'
     const data = await get(url)
     return {
         props: {

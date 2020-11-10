@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router'
 import { get } from '../../../util/common'
-import { BASE_URL, API_ROUTE} from '../../../util/settings'
+import { BASE_URL } from '../../../util/settings'
 import { ArticleList } from '../../../util//sample-data'
 
 export async function getServerSideProps(props: any) {
     // props.query = { journal_name: 'journalname' } でわたってくる
     const { journal_name } = props.query
-    // TODO: API_ROUTE削除
-    const url: string = BASE_URL + API_ROUTE.getArticlesByJournal
+    const url: string = BASE_URL + `/articles/journal/${journal_name}`
     const data: ArticleList = await get(url)
     return {
         props: {data}

@@ -4,7 +4,6 @@ import { article_article_id_purchase } from '../../../../util/sample-data'
 export default function search(_req: NextApiRequest, res: NextApiResponse) {
     try {
         if (_req.method == 'POST') {
-            console.log(article_article_id_purchase)
             res.status(200).json(article_article_id_purchase)
         }
     } catch (err) {
