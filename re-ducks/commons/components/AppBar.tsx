@@ -18,13 +18,16 @@ import PopUpMenu from './PopUpMenu'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import SettingsIcon from '@material-ui/icons/Settings'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
+import TextField from '@material-ui/core/TextField'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const SearchAppBar = () => {
   const classes = useStyles()
   const router = useRouter()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [searchText, setSearchText] = useState("")
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -131,8 +134,8 @@ const SearchAppBar = () => {
             <MenuIcon />
           </IconButton> */}
           <img height="60px" src="/ibis.svg" onClick={() => router.push('/')}/>
-          <PopUpMenu title="ジャンル" ganreList={ganreList}/> 
-          <PopUpMenu title="雑誌" ganreList={ganreList}/> 
+          <PopUpMenu title="ジャンルで探す" ganreList={ganreList}/> 
+          <PopUpMenu title="雑誌で探す" ganreList={ganreList}/> 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -143,9 +146,10 @@ const SearchAppBar = () => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => setSearchText(e.target.value)}
             />
           </div>
+          <p>{searchText}</p>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton

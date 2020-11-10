@@ -26,7 +26,7 @@ const PopUpMenu = ({title, ganreList}: Menu) => {
   return (
     <div>
       <Button aria-controls="pop-up-menu" aria-haspopup="true" onMouseEnter={handleClick}>
-        <Typography>{title}で探す</Typography>
+        <Typography>{title}</Typography>
         <ExpandMoreIcon />
       </Button>
       <Popover
