@@ -19,23 +19,22 @@ import ClickEvent from '../../re-ducks/dev/components/DevClickEvent'
 import Loading from '../../re-ducks/dev/components/DevLoading'
 
 import styles from '../../public/styles/_dev.module.scss'
-import { BASE_URL, API_ROUTE } from "../../util/settings"
+// import { BASE_URL, API_ROUTE } from "../../util/settings"
 import { get, post } from '../../util/common'
 import Logout from '../../util/auth/Logout'
 import { Login } from '../../util/auth/Login'
 import ClipBoard from '../../re-ducks/commons/components/ClipBoard'
 
 export async function getServerSideProps() {
-  const url: string = BASE_URL + API_ROUTE.dev
-  const json = await get(url)
-  const stars: number = await json.stars
+  // const url: string = BASE_URL + API_ROUTE.dev
+  // const json = await get(url)
+  // const stars: number = await json.stars
 
   // propsで値が返される→props.starsで取得できる
   return {
     props: {
-      stars: stars,
       dev: {
-        textbox: 'propsの値',
+        textbox: 'propsのtextbox',
       }
    }
   }
@@ -100,7 +99,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { reducksCountUp, reducksCountDown } from '../../re-ducks/dev/Actions'
 import {sampleData} from '../../util/sample-data'
 
-const Dev: FC<sampleData> = ({ dev, stars }) => {
+const Dev = ( props: any) => {
   const selector = useSelector(state => state)
   const reducksCount = getReducksCounter(selector)
   const dispatch = useDispatch()
@@ -129,10 +128,7 @@ const Dev: FC<sampleData> = ({ dev, stars }) => {
 
       <div className={styles.container}>
         <p>
-          Propsで受け取った初期値：{dev.textbox}
-        </p>
-        <p>
-        fetchAPIで取得したstars：{stars}
+          Propsのテスト：{props.dev.textbox}
         </p>
         <p>
         <BadDispatchCounter />
@@ -173,22 +169,13 @@ const Dev: FC<sampleData> = ({ dev, stars }) => {
           Delete
       </Button>
         {/* This Button uses a Font Icon, see the installation instructions in the Icon component docs. */}
-        <Button
-          variant="contained"
-          color="primary"
-          className="button"
-          endIcon={<Icon>send</Icon>}
-        >
-          Send
-      </Button>
-        <Button
-          variant="contained"
-          color="default"
-          className="button"
-          startIcon={<CloudUploadIcon />}
-        >
-          Upload
-      </Button>
+        <Button variant="contained">
+          <Link href="/articles/1">
+            /articles/1
+          </Link>
+        </Button>
+
+
         <Button
           variant="contained"
           disabled
