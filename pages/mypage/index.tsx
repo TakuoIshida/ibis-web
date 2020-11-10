@@ -1,7 +1,7 @@
-import { isUserLogin, getUserInfo} from '../../util/common'
+import { loginCheckAndRedilect, getUserInfo} from '../../util/common'
 
 const index = () => {
-  isUserLogin()
+  loginCheckAndRedilect()
   const userInfo = getUserInfo()
   return (
   <>

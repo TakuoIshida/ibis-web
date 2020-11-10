@@ -3,24 +3,23 @@ import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import InputBase from '@material-ui/core/InputBase'
 import Badge from '@material-ui/core/Badge'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
-import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import MailIcon from '@material-ui/icons/Mail'
-import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import PopUpMenu from './PopUpMenu'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import SettingsIcon from '@material-ui/icons/Settings'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
-import TextField from '@material-ui/core/TextField'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { isUserLogin, popupLogin, logout } from '../../../util/common'
+import Link from 'next/link'
 
 const SearchAppBar = () => {
   const classes = useStyles()
@@ -28,6 +27,7 @@ const SearchAppBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null)
   const [searchText, setSearchText] = useState("")
+  const [isLogin, setIsLogin] = useState(isUserLogin())
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -38,11 +38,15 @@ const SearchAppBar = () => {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null)
-  }
-
-  const handleMenuClose = () => {
     setAnchorEl(null)
+  }
+  
+  const handleMenuClose = () => {
     handleMobileMenuClose()
+  }
+  const handleMenuCloseAndLogout = () => {
+    handleMobileMenuClose()
+    logout()
   }
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -50,6 +54,7 @@ const SearchAppBar = () => {
   }
 
   const menuId = 'primary-search-account-menu'
+  
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -60,10 +65,11 @@ const SearchAppBar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><AccountCircle />マイページ</MenuItem>
-      <MenuItem onClick={handleMenuClose}><PersonAddIcon />会員登録</MenuItem>
+      <MenuItem onClick={handleMenuClose}><AccountCircle /><Link href="/mypage">マイページ</Link></MenuItem>
+      {/*　TODO: 会員ページ、設定ページへのルーティング */}
+      <MenuItem onClick={handleMenuClose}><PersonAddIcon />有料会員登録</MenuItem>
       <MenuItem onClick={handleMenuClose}><SettingsIcon />設定</MenuItem>
-      <MenuItem onClick={handleMenuClose}><ExitToAppIcon />ログアウト</MenuItem>
+      <MenuItem onClick={handleMenuCloseAndLogout}><ExitToAppIcon />ログアウト</MenuItem>
     </Menu>
   )
 
@@ -78,11 +84,13 @@ const SearchAppBar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      <MenuItem onClick={handleMobileMenuClose}>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <AccountCircle />
         </IconButton>
+        <Link href="/mypage">
         <p>マイページ</p>
+        </Link>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -90,7 +98,7 @@ const SearchAppBar = () => {
           <PersonAddIcon />
           </Badge>
         </IconButton>
-        <p>会員登録</p>
+        <p>有料会員登録</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -105,7 +113,7 @@ const SearchAppBar = () => {
         </IconButton>
         <p>設定</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={handleMenuCloseAndLogout}>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -151,7 +159,10 @@ const SearchAppBar = () => {
           </div>
           <p>{searchText}</p>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
+            {
+              isUserLogin()? (
+            <>
+            <div className={classes.sectionDesktop}>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -159,7 +170,7 @@ const SearchAppBar = () => {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
-            >
+              >
               <AccountCircle />
             </IconButton>
           </div>
@@ -170,10 +181,18 @@ const SearchAppBar = () => {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
-            >
+              >
               <MoreIcon />
             </IconButton>
           </div>
+          </>
+              ) :(
+                <>
+                <Button onClick={popupLogin}>無料会員登録</Button>
+                <Button onClick={popupLogin}>ログイン</Button>
+                </>
+              )
+            }
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
