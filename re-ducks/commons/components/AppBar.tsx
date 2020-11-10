@@ -18,9 +18,11 @@ import PopUpMenu from './PopUpMenu'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import SettingsIcon from '@material-ui/icons/Settings'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
+import { useRouter } from 'next/router'
 
 const SearchAppBar = () => {
   const classes = useStyles()
+  const router = useRouter()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null)
 
@@ -128,7 +130,7 @@ const SearchAppBar = () => {
             >
             <MenuIcon />
           </IconButton> */}
-          <img height="60px" src="/ibis.svg" />
+          <img height="60px" src="/ibis.svg" onClick={() => router.push('/')}/>
           <PopUpMenu title="ジャンル" ganreList={ganreList}/> 
           <PopUpMenu title="雑誌" ganreList={ganreList}/> 
           <div className={classes.search}>
