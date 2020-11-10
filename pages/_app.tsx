@@ -8,24 +8,23 @@ import Router from 'next/router'
 import NProgress from 'nprogress'
 import SearchAppBar from '../re-ducks/commons/components/AppBar'
 import PageBreadcrumbs from '../re-ducks/commons/components/Breadcrumb'
-
-Router.events.on('routeChangeStart', () => NProgress.inc())
-Router.events.on('routeChangeComplete', () => NProgress.done())
-Router.events.on('routeChangeError', () => NProgress.done())
+import { useState } from 'react'
+import Loading from '../re-ducks/commons/components/Loading'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  
+  const [loading, setLoading] = useState(false)
+  Router.events.on('routeChangeStart', () => setLoading(true))
+  Router.events.on('routeChangeComplete', () => setLoading(false))
+  Router.events.on('routeChangeError', () => setLoading(false))
   return (
       <Provider store={store}>
         <AuthProvider>
           <Head>
-          {/* Import CSS for nprogress */}
-          {/* TODO: 動的にtitleを変更する */}
-          <title>title | IBiS</title>
+          <title>IBiS</title>
           <link rel="icon" href="/favicon.svg"/>
-          <link rel="stylesheet" type="text/css" href="/styles/nprogress.css" />
           </Head>
           <div className={styles.bg_color}>
+            {loading? <Loading /> : <></>}
             <SearchAppBar />
             <PageBreadcrumbs />
             <Component {...pageProps} />

@@ -168,13 +168,6 @@ const Dev = ( props: any) => {
         >
           Delete
       </Button>
-        {/* This Button uses a Font Icon, see the installation instructions in the Icon component docs. */}
-        <Button variant="contained">
-          <Link href="/articles/1">
-            /articles/1
-          </Link>
-        </Button>
-
 
         <Button
           variant="contained"

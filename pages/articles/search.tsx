@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
-import { get } from '../../util/common'
+import { post } from '../../util/common'
 import { BASE_URL } from '../../util/settings'
 import { ArticleList } from '../../util/sample-data'
 
 export async function getServerSideProps() {
-    // TODO: textボックスを入れて、任意の値をGETし、bodyにいれる
     const url: string = BASE_URL + '/articles/search'
-    const data = await get(url)
+    const body = { keyword: 'test'}
+    const data = await post(url, body)
     return {
         props: {
           data

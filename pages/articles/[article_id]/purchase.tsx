@@ -4,25 +4,27 @@ import PublishIcon from '@material-ui/icons/Publish'
 import { FC, useState } from 'react'
 import { post } from '../../../util/common'
 import { BASE_URL } from '../../../util/settings'
+import { useRouter } from 'next/router'
 
+export async function getServerSideProps(props: any) {
+  return {
+      props: {
+        BASE_URL
+      }
+  }
+}
 const Purchase = (props: any) => {
+  const router = useRouter()
+  // 深い層でも動的な値は取得できる
+  // console.log(router)
+  const { article_id } = router.query
   const [isPosted, setIsPosted] = useState(false)
-  
   const handleOnClick = async (e: React.MouseEvent<HTMLElement>) => {
     setIsPosted(!e.currentTarget.getAttribute("disabled"))
-    // TODO: POST処理
-    console.log(props)
-  // const purchaseURL: string = BASE_URL + '/articles/1/purchase'
-  // TODO: upppeerCaseにする？
-  // const body = {article_id: 1}
-  // console.log(body)
-  // const purchase: ArticleArticleIdPurchase = await post(purchaseURL, body)
-  // console.log(purchase)
-  // return {
-  //   props: {
-  //     IsSucceeded: purchase.IsSucceeded
-  //   }
-  // }
+  const purchaseURL: string = props.BASE_URL + `/articles/${article_id}/purchase`
+  const body = {article_id: article_id}
+  const purchase: ArticleArticleIdPurchase = await post(purchaseURL, body)
+  return alert(purchase.IsSucceeded)
   };
   // const notion = (e: React.MouseEvent<HTMLElement>) => {
   //   console.log(e.currentTarget.getAttribute("data-item"));
@@ -31,9 +33,6 @@ const Purchase = (props: any) => {
   // };
   return (
     <>
-    <div>
-      {/* <p>isOK：{`${props.IsSucceeded}` || ''}</p> */}
-    </div>
     <Button color="secondary"
     variant="contained"
     onClick={handleOnClick}

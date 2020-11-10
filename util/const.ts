@@ -17,6 +17,7 @@ type ganres = typeof ganres[number]
 type publishers = typeof publishers[number]
 
 // パンくずリスト
+// TODO: 最後に実装
 export const routingMapping: routingMappingType = {
     '/': { title: 'トップページ' },
     '/dev': { title: '開発画面' },
