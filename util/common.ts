@@ -30,18 +30,22 @@ export const post = async (url: string, body?: {}) => {
 
 
 // ユーザーのログインを判断する
-export const isUserLogin = () => {
+export const loginCheckAndRedilect = () => {
     const { currentUser } = useContext(AuthContext)
-    // 開発用にコンソール画面に表示
-    console.log("currentUser:", currentUser)
     useEffect(() => {
     // currentUserが明示的にnullの場合はログイン画面へリダイレクト
     currentUser === null && router.push("/")
    }, [currentUser])
 }
 
+// ユーザーのログインを判断し、Boolean型で返す
+export const isUserLogin = ():boolean => {
+    const { currentUser } = useContext(AuthContext)
+    return currentUser? true : false
+}
+
 // POST前にTokenを取得する
-export const getUserToken = () => {
+export const getUserToken = ():string => {
     const { currentUser } = useContext(AuthContext)
     useEffect(() => {
     // currentUserが明示的にnullの場合はログイン画面へリダイレクト
@@ -102,10 +106,6 @@ export const popupLogin = () => {
         alert("redilect to top")
         router.push("/")
       });
-}
-
-export const login = () => {
-    auth.signInWithPopup(googleProvider)
 }
 
 export const logout = () => {
