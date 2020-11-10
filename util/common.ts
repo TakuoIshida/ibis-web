@@ -2,6 +2,7 @@ import { auth, googleProvider } from '../firebase'
 import { useContext, useEffect } from 'react'
 import { AuthContext } from './auth/Auth'
 import router from 'next/router'
+// Rules: 外部パッケージでimortした関数はラップする（保守運用上のため）
 
 // TODO: request_paramsの設定
 export const get = async (url: string) => {
@@ -19,6 +20,7 @@ export const post = async (url: string, body: {}) => {
             // 'authorization': 'Bearer'+ token
         // },
         body: JSON.stringify(body)}
+    console.log(params)
     const data = await fetch(url, params).then((res) => res.json())
     return data
 }
@@ -26,8 +28,6 @@ export const post = async (url: string, body: {}) => {
 // TODO: APIリクエスト時に、Tokenを取得し、現状のTokenと同じか認証する
 // 同じでなければ、alertを出して、トップにリダイレクトする
 
-// 外部パッケージでimortした関数はラップする（保守運用上のため）
-// TODO: Google認証、各種ユーザー動作のシミュレーションをして、関数をラップ化する
 
 // ユーザーのログインを判断する
 export const isUserLogin = () => {

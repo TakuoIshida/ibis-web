@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 import { get } from '../../../util/common'
 import { BASE_URL } from '../../../util/settings'
-import { ArticleList } from '../../../util//sample-data'
+import { ArticleList } from '../../../util/sample-data'
 
 export async function getServerSideProps(props: any) {
     // props.query = { genre_name: 'genrename' } でわたってくる
-    const { genre_name } = props.query
-    const url: string = BASE_URL + `/articles/genre/${genre_name}`
+    // const { genre_name } = props.query
+    const url: string = BASE_URL + props.resolvedUrl
     const data: ArticleList = await get(url)
     return {
         props: {data}

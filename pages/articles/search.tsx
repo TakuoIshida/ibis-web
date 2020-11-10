@@ -3,7 +3,7 @@ import { get } from '../../util/common'
 import { BASE_URL } from '../../util/settings'
 import { ArticleList } from '../../util/sample-data'
 
-export async function getServerSideProps() {
+export async function getServerSideProps(props: any) {
     // TODO: textボックスを入れて、任意の値をGETし、bodyにいれる
     const url: string = BASE_URL + '/articles/search'
     const data = await get(url)

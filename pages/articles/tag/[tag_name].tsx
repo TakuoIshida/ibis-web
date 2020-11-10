@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { get } from '../../../util/common'
 import { BASE_URL} from '../../../util/settings'
-import { ArticleList } from '../../../util//sample-data'
+import { ArticleList } from '../../../util/sample-data'
 
 export async function getServerSideProps(props: any) {
     // props.query = { tag_name: 'tagname' } でわたってくる
