@@ -1,17 +1,14 @@
 export const BASE_URL: string = `${process.env.BASE_URL}`
 
+//TODO:  動的なページに対応てきないため各ページに散逸させる
 export const API_ROUTE: API_ROUTE = {
-    dev: '/dev',
-    search: '/article/search',
-    purchase: '/article/purchase',
-    postArticle: '/article/post_article',
     // ArticleRouting
     getArticle: '/articles',
-    getArticlesByGenre: '/genre/genrename',
-    getArticlesByTag: '/tag/tagname',
-    getArticlesByJournal: '/journal/journalname',
-    purchaseArticle: '/article-id/purchase',
-    searchArticles: '/search',
+    getArticlesByGenre: '/articles/genre/genrename',
+    getArticlesByTag: '/articles/tag/tagname',
+    getArticlesByJournal: '/articles/journal/journalname',
+    purchaseArticle: '/articles/1/purchase',
+    searchArticles: '/articles/search',
 } as const
 
 type API_ROUTE = { [name: string]: string }

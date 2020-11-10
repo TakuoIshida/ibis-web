@@ -1,22 +1,24 @@
-import { auth, googleProvider, firebase } from '../firebase'
+import { auth, googleProvider } from '../firebase'
 import { useContext, useEffect } from 'react'
 import { AuthContext } from './auth/Auth'
 import router from 'next/router'
-import { RedoRounded } from '@material-ui/icons'
 
-export const get = async (url: string) => {
-    const data = await fetch(url).then((res) => res.json())
+export const get = async (url: string, body?: {}) => {
+    const params = {
+        method: 'GET',
+        body: JSON.stringify(body)}
+    const data = await fetch(url, params).then((res) => res.json())
     return data
 }
 export const post = async (url: string, body: {}) => {
     // 認証チェックのためにTokenをバックエンドに渡す
-    const token: string = getUserToken()
+    // const token: string = getUserToken()
     const params = {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer'+ token
-        },
+        // headers: {
+            // 'Content-Type': 'application/json',
+            // 'authorization': 'Bearer'+ token
+        // },
         body: JSON.stringify(body)}
     const data = await fetch(url, params).then((res) => res.json())
     return data
