@@ -49,7 +49,7 @@ const UserGradeChoice = () => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="large" color="primary" value={grade.grade} onClick={(e) => { choiceUserGrade(e.target.value)}}>
+                    <Button size="large" color="primary" value={grade.grade} onClick={() => {choiceUserGrade(grade.grade)}}>
                         購入する
                     </Button>
                 </CardActions>
