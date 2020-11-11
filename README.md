@@ -27,3 +27,6 @@ npm run dev
 https://github.com/TakuoIshida/ibis-web/blob/master/LICENSE
 ## Author
 ishida takuo
+
+## deploy
+https://ibis-web.vercel.app/
