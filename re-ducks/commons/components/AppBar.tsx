@@ -9,6 +9,7 @@ import InputBase from '@material-ui/core/InputBase'
 import Badge from '@material-ui/core/Badge'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
+import Avatar from '@material-ui/core/Avatar'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import MoreIcon from '@material-ui/icons/MoreVert'
@@ -18,16 +19,16 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { isUserLogin, popupLogin, logout } from '../../../util/common'
+import { isUserLogin, popupLogin, logout, getUserInfo } from '../../../util/common'
 import Link from 'next/link'
 
 const SearchAppBar = () => {
   const classes = useStyles()
   const router = useRouter()
+  const userInfo = getUserInfo()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null)
   const [searchText, setSearchText] = useState("")
-  const [isLogin, setIsLogin] = useState(isUserLogin())
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -67,8 +68,8 @@ const SearchAppBar = () => {
     >
       <MenuItem onClick={handleMenuClose}><AccountCircle /><Link href="/mypage">マイページ</Link></MenuItem>
       {/*　TODO: 会員ページ、設定ページへのルーティング */}
-      <MenuItem onClick={handleMenuClose}><PersonAddIcon />有料会員登録</MenuItem>
-      <MenuItem onClick={handleMenuClose}><SettingsIcon />設定</MenuItem>
+      <MenuItem onClick={handleMenuClose}><PersonAddIcon /><Link href="/dev/user_grade_choice">有料会員登録</Link></MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}><SettingsIcon />設定</MenuItem> */}
       <MenuItem onClick={handleMenuCloseAndLogout}><ExitToAppIcon />ログアウト</MenuItem>
     </Menu>
   )
@@ -98,7 +99,9 @@ const SearchAppBar = () => {
           <PersonAddIcon />
           </Badge>
         </IconButton>
-        <p>有料会員登録</p>
+        <Link href="/dev/user_grade_choice">
+          <p>有料会員登録</p>
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -154,7 +157,7 @@ const SearchAppBar = () => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              onChange={(e) => setSearchText(e.target.value)}
+              onBlur={(e) => setSearchText(e.target.value)}
             />
           </div>
           <p>{searchText}</p>
@@ -171,7 +174,7 @@ const SearchAppBar = () => {
               onClick={handleProfileMenuOpen}
               color="inherit"
               >
-              <AccountCircle />
+                {(userInfo?.photoURL)? (<Avatar alt="user photo" src={userInfo.photoURL} />) :(<AccountCircle />)}
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
