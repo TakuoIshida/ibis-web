@@ -9,6 +9,7 @@ import InputBase from '@material-ui/core/InputBase'
 import Badge from '@material-ui/core/Badge'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
+import Avatar from '@material-ui/core/Avatar'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import MoreIcon from '@material-ui/icons/MoreVert'
@@ -18,16 +19,16 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { isUserLogin, popupLogin, logout } from '../../../util/common'
+import { isUserLogin, popupLogin, logout, getUserInfo } from '../../../util/common'
 import Link from 'next/link'
 
 const SearchAppBar = () => {
   const classes = useStyles()
   const router = useRouter()
+  const userInfo = getUserInfo()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null)
   const [searchText, setSearchText] = useState("")
-  const [isLogin, setIsLogin] = useState(isUserLogin())
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -171,7 +172,7 @@ const SearchAppBar = () => {
               onClick={handleProfileMenuOpen}
               color="inherit"
               >
-              <AccountCircle />
+                {(userInfo?.photoURL)? (<Avatar alt="user photo" src={userInfo.photoURL} />) :(<AccountCircle />)}
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
