@@ -68,8 +68,8 @@ const SearchAppBar = () => {
     >
       <MenuItem onClick={handleMenuClose}><AccountCircle /><Link href="/mypage">マイページ</Link></MenuItem>
       {/*　TODO: 会員ページ、設定ページへのルーティング */}
-      <MenuItem onClick={handleMenuClose}><PersonAddIcon />有料会員登録</MenuItem>
-      <MenuItem onClick={handleMenuClose}><SettingsIcon />設定</MenuItem>
+      <MenuItem onClick={handleMenuClose}><PersonAddIcon /><Link href="/dev/user_grade_choice">有料会員登録</Link></MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}><SettingsIcon />設定</MenuItem> */}
       <MenuItem onClick={handleMenuCloseAndLogout}><ExitToAppIcon />ログアウト</MenuItem>
     </Menu>
   )
@@ -99,7 +99,9 @@ const SearchAppBar = () => {
           <PersonAddIcon />
           </Badge>
         </IconButton>
-        <p>有料会員登録</p>
+        <Link href="/dev/user_grade_choice">
+          <p>有料会員登録</p>
+        </Link>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -155,7 +157,7 @@ const SearchAppBar = () => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              onChange={(e) => setSearchText(e.target.value)}
+              onBlur={(e) => setSearchText(e.target.value)}
             />
           </div>
           <p>{searchText}</p>
