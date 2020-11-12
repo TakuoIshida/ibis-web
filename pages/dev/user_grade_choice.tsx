@@ -6,59 +6,93 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import styles from '../../public/styles/_user_grade_choice.module.scss'
+import { useState } from 'react'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 
 const UserGradeChoice = () => {
+    const [selectedGrade, setSelectedGrade] = useState(1)
+    const [isButtonDisable, setIsButtonDisable] = useState(true)
     // TODO: propsとして受けるもの、会員グレードタイトル、画像ID、料金、description、
-    const gradeList = [
-        { grade: 1, title: '無料会員', imageId: 1, price: 'Free', description: 'サービス説明1'},
-        { grade: 2, title: 'シルバー会員', imageId: 2, price: '1000', description: 'サービス説明2'},
-        { grade: 3, title: 'ゴールド会員', imageId: 3, price: '2000', description: 'サービス説明3'},
-    ]
+    // gradeをセットし、色で視認させる。 → 有料の場合押せるようにし、購入ボタンを押してもらう
     const choiceUserGrade = (grade :number) => {
-        // UserInfo,userGradeを取得し、モーダルを表示する。
-        alert(grade)
+        setSelectedGrade(grade)
+        // 無料会員→ボタンをdisableにする
+        // 有料会員→ボタンをアクティブにする
+        switch (grade) {
+            case 1:
+                setIsButtonDisable(true)
+                break
+            case 2:
+                setIsButtonDisable(false)
+                break
+            case 3:
+                setIsButtonDisable(false)
+                // バッジを充てる
+                break
+        }
     }
-    // モーダルでＯＫがでれば、POSTする
+    const checkOut = (selectedGrade: number) => {
+        // POST処理（grade, userInfo.[email, token], を取得し、バックエンドにPOSTする）
+        alert(`you checked ${selectedGrade} out!`)
+    }
 
-    // モーダルでのOK 
-    const areYouSure = () => {
-        // 
-    }
     return (
     <>
-        {gradeList.map((grade, i) => {
-            return(
+      {/* TODO: selectedGrade で色をつける */}
+      {/* 各サービスの画像を用意 */}
+      {/* おすすめのバッジをつける */}
+      {/* 無料会員 */}
             <div>
-                <Card key={i} className={styles.width}>
-                <CardActionArea>
-                    <CardMedia
-                    component="img"
-                    className={styles.height}
-                    // publicをrootとしてpathを書く
-                    image={`/img/${grade.imageId}.jpg`}
-                    title={grade.title}
-                    alt={grade.title}
-                    />
+                <Card className={styles.width}>
+                <CardActionArea onClick={() => {choiceUserGrade(1)}}>
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {grade.title}
+                        無料会員
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {grade.description}
+                        説明１
                     </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button size="large" color="primary" value={grade.grade} onClick={() => {choiceUserGrade(grade.grade)}}>
-                        購入する
-                    </Button>
-                </CardActions>
                 </Card>
             </div>
+      {/* シルバー会員 */}
+            <div>
+                <Card className={styles.width}>
+                <CardActionArea onClick={() => {choiceUserGrade(2)}}>
+                    <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        シルバー会員
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        説明2
+                    </Typography>
+                    </CardContent>
+                </CardActionArea>
+                </Card>
+            </div>
+      {/* ゴールド会員 */}
+            <div>
+                <Card className={styles.width}>
+                <CardActionArea onClick={() => {choiceUserGrade(3)}}>
+                    <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        ゴールド会員
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        説明3
+                    </Typography>
+                    </CardContent>
+                </CardActionArea>
+                </Card>
+            </div>
+            <div>
+                <Button disabled={isButtonDisable} onClick={() => checkOut(selectedGrade)} variant="contained" color="secondary">
+                    <ShoppingCartIcon />購入する
+                </Button>
+            </div>
+            </>
             )
-        })}
-    </>
-    )
 }
 
 export default UserGradeChoice
