@@ -1,4 +1,5 @@
 import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -8,7 +9,10 @@ import Typography from '@material-ui/core/Typography'
 import styles from '../../public/styles/_user_grade_choice.module.scss'
 import { useState } from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import Divider from '@material-ui/core/Divider'
 
+// flier のサービスページ
+// https://www.flierinc.com/doc/services
 const UserGradeChoice = () => {
     const [selectedGrade, setSelectedGrade] = useState(1)
     const [isButtonDisable, setIsButtonDisable] = useState(true)
@@ -38,11 +42,16 @@ const UserGradeChoice = () => {
 
     return (
     <>
+    <div className={styles.service_intro}>
+        <Typography gutterBottom variant="h5" component="h2" className={styles.service_intro_text}>
+            サービスのご紹介
+        </Typography>
+    </div>
       {/* TODO: selectedGrade で色をつける */}
-      {/* 各サービスの画像を用意 */}
       {/* おすすめのバッジをつける */}
       {/* 無料会員 */}
-            <div>
+      <div className={styles.display_flex}>
+            <div className={styles.row}>
                 <Card className={styles.width}>
                 <CardActionArea onClick={() => {choiceUserGrade(1)}}>
                     <CardContent>
@@ -52,12 +61,16 @@ const UserGradeChoice = () => {
                     <Typography variant="body2" color="textSecondary" component="p">
                         説明１
                     </Typography>
+                    <Divider />
+                    <Typography variant="h6" gutterBottom className={styles.plan}>
+                        0円/月（税抜）
+                    </Typography>
                     </CardContent>
                 </CardActionArea>
                 </Card>
             </div>
       {/* シルバー会員 */}
-            <div>
+            <div className={styles.row}>
                 <Card className={styles.width}>
                 <CardActionArea onClick={() => {choiceUserGrade(2)}}>
                     <CardContent>
@@ -67,27 +80,37 @@ const UserGradeChoice = () => {
                     <Typography variant="body2" color="textSecondary" component="p">
                         説明2
                     </Typography>
+                    <Divider />
+                    <Typography variant="h6" gutterBottom className={styles.plan}>
+                        1000円/月（税抜）
+                    </Typography>
                     </CardContent>
                 </CardActionArea>
                 </Card>
             </div>
       {/* ゴールド会員 */}
-            <div>
-                <Card className={styles.width}>
+            <div className={styles.row}>
+                <Card className={styles.card}>
                 <CardActionArea onClick={() => {choiceUserGrade(3)}}>
+                <CardHeader title="\ オススメ /" className={styles.card_header} />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                         ゴールド会員
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        説明3
+                    説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3説明3
+                    </Typography>
+                    <Divider />
+                    <Typography variant="h6" gutterBottom className={styles.plan}>
+                        2000円/月（税抜）
                     </Typography>
                     </CardContent>
                 </CardActionArea>
                 </Card>
             </div>
-            <div>
-                <Button disabled={isButtonDisable} onClick={() => checkOut(selectedGrade)} variant="contained" color="secondary">
+      </div>
+            <div className={styles.div_button}>
+                <Button  disabled={isButtonDisable} onClick={() => checkOut(selectedGrade)} variant="contained" color="secondary">
                     <ShoppingCartIcon />購入する
                 </Button>
             </div>

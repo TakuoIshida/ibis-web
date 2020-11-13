@@ -1,6 +1,52 @@
-.width {
-    width: 200px;
+@import "./variables";
+
+.service_intro {
+    margin: 20px auto;
+    text-align: center;
+    .service_intro_text {
+        position: relative;
+        position: relative;
+        display: inline-block;
+        padding: 0.4em 1.6em;
+        &:after {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            width: 40%;
+            height: 1px;
+            margin-top: 4px;
+            content: '';
+            background: $ibis-orange;
+            transition: 0.4s ease;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+    }
 }
-.height {
-    height: 140px;
+    
+.display_flex {
+    display: flex;
+    margin-top: 50px;
+    .row {
+        margin: auto;
+        .recommend {
+            padding: 0;
+            margin: auto;
+            text-align: center;
+        }
+    }
+}
+
+.card {
+    width: 300px;
+}
+.plan {
+    text-align: center;
+    margin-bottom: 0;
+}
+.div_button {
+    width: 150px;
+    display: block;
+    margin: 20px auto;
+    text-align:center;
 }
