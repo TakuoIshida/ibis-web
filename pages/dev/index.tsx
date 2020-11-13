@@ -144,7 +144,7 @@ const Dev = ( props: any) => {
       </div>
 
 
-      <Divider className="margin_top" />
+      <Divider className="margin_top" variant="inset"/>
       <div className={styles.root}>
         <AppBar position="static">
           <Toolbar>
@@ -197,7 +197,7 @@ const Dev = ( props: any) => {
           Save
       </Button>
       </div>
-      <Divider />
+      <Divider variant="inset"/>
       <ClipBoard reference="This text is copied when clip is clicked."/>
       <Divider />
       <Table />
