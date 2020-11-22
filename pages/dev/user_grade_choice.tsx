@@ -1,43 +1,36 @@
-import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import styles from '../../public/styles/_user_grade_choice.module.scss'
-import { useState } from 'react'
-import Divider from '@material-ui/core/Divider'
 // import PaymentForm from './PaymentForm'
 
 // flier のサービスページ
 // https://www.flierinc.com/doc/services
 
-type gradeListType ={
-    id: number,
-    name: string,
-    description: string,
-    price: number
-}
+
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
+import Typography from '@material-ui/core/Typography'
+import styles from '../../public/styles/_user_grade_choice.module.scss'
 
 const UserGradeChoice = () => {
-    const [selectedGrade, setSelectedGrade] = useState(1)
-    // const [customer] = useState(location.state.customer)
-    
-    const gradeList: gradeListType[] = [
-        {id: 1, name: "無料会員", description: "無料会員の説明", price: 0 },
-        {id: 2, name: "シルバー会員", description: "シルバーの説明", price: 1000 },
-        {id: 3, name: "有料会員", description: "ゴールド会員の説明", price: 2000 },
-    ]
     // TODO: propsとして受けるもの、会員グレードタイトル、画像ID、料金、description、
-    // gradeをセットし、色で視認させる。 → 有料の場合押せるようにし、購入ボタンを押してもらう
-    const choiceUserGrade = (grade :number) => {
-        // 選択されたカードのカラーを変える
-        setSelectedGrade(grade)
+    const gradeList = [
+        { id: 1, title: '無料会員', imageId: 1, price: 'Free', description: 'サービス説明1'},
+        { id: 2, title: 'シルバー会員', imageId: 2, price: '1000', description: 'サービス説明2'},
+        { id: 3, title: 'ゴールド会員', imageId: 3, price: '2000', description: 'サービス説明3'},
+    ]
+    const choiceUserGrade = (id :number) => {
+        // UserInfo,userGradeを取得し、モーダルを表示する。
+        alert(id)
     }
-    const checkOut = (selectedGrade: number) => {
-        // POST処理（grade, userInfo.[email, token], を取得し、バックエンドにPOSTする）
-        alert(`you checked ${selectedGrade} out!`)
-    }
+    // モーダルでＯＫがでれば、POSTする
 
+    // モーダルでのOK 
+    const areYouSure = () => {
+        // 
+    }
     return (
     <>
     <div className={styles.service_intro}>
@@ -45,42 +38,46 @@ const UserGradeChoice = () => {
             サービスのご紹介
         </Typography>
     </div>
-      {/* TODO: selectedGrade で色をつける */}
-      {/* おすすめのバッジをつける */}
-      {/* 無料会員 */}
-      <div className={styles.display_flex}>
-      {gradeList.map((grade, i) => {
-            <div key={i} className={styles.row}>
-              <Card className={styles.card}>
-              <CardActionArea onClick={() => {choiceUserGrade(grade.id)}}>
-                  <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {grade.name}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    {grade.description}
-                  </Typography>
-                  <Divider />
-                  <Typography variant="h6" gutterBottom className={styles.plan}>
-                    {grade.price}円/月（税抜）
-                  </Typography>
-                  </CardContent>
-              </CardActionArea>
-              </Card>
-          </div>
-      })}
-      </div>
-        {/* クレジットカード入力フォームを表示させる */}
-            {/* { selectedGrade > 1? 
-            <PaymentForm
-            selectedGrade={selectedGrade}
-            customer={customer}
-          /> 
-            : null
-            } */}
+    <div className={styles.display_flex}>
+
+        {gradeList.map((grade, i) => {
+            return(
+            <div className={styles.row}>
+                <Card key={i} className={styles.card}>
+                <CardActionArea>
+                    <CardMedia
+                    component="img"
+                    className={styles.height}
+                    // publicをrootとしてpathを書く
+                    image={`/img/${grade.imageId}.jpg`}
+                    title={grade.title}
+                    alt={grade.title}
+                    />
+                    <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {grade.title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {grade.description}
+                    </Typography>
+                    <Divider />
+                    <Typography variant="h6" gutterBottom className={styles.plan}>
+                        {grade.price}円/月（税抜）
+                    </Typography>
+                    </CardContent>
+                </CardActionArea>
+                {/* <CardActions>
+                    <Button size="large" color="primary" value={grade.id} onClick={() => {choiceUserGrade(grade.id)}}>
+                        購入する
+                    </Button>
+                </CardActions> */}
+                </Card>
+            </div>
+            )
+        })}
+    </div>
     </>
     )
 }
-
 
 export default UserGradeChoice
