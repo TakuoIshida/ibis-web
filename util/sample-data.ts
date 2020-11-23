@@ -249,7 +249,52 @@ export const articles_search: ArticleList = [
 
 // stripe ユーザー登録時、返ってくるresult.customerの構造体
 // created が存在することを確認すること（stripe推奨）
-export const sampleCustomer = {
+type sampleCustomerType = {
+  "id": string,
+  "object": string,
+  "address": null | string,
+  "balance": number,
+  "created": number,
+  "currency": string,
+  "default_source": null,
+  "delinquent": boolean,
+  "description": string,
+  "discount": null,
+  "email": null,
+  "invoice_prefix": string,
+  "invoice_settings": {
+    "custom_fields": null,
+    "default_payment_method": null,
+    "footer": null
+  },
+  "livemode": boolean,
+  "metadata": {},
+  "name": string,
+  "next_invoice_sequence": number,
+  "phone": null,
+  "preferred_locales": [],
+  "shipping": null,
+  "sources": {
+    "object": string,
+    "data": [],
+    "has_more": boolean,
+    "url":string
+  },
+  "subscriptions": {
+    "object": "list",
+    "data": [],
+    "has_more": boolean,
+    "url": string
+  },
+  "tax_exempt": "none",
+  "tax_ids": {
+    "object": "list",
+    "data": [],
+    "has_more": boolean,
+    "url": "/v1/customers/cus_HAwLCi6nxPYcsl/tax_ids"
+  }
+}
+export const sampleCustomer: sampleCustomerType = {
   "id": "cus_HAwLCi6nxPYcsl",
   "object": "customer",
   "address": null,
@@ -269,7 +314,7 @@ export const sampleCustomer = {
   },
   "livemode": false,
   "metadata": {},
-  "name": null,
+  "name": "user_name",
   "next_invoice_sequence": 1,
   "phone": null,
   "preferred_locales": [],

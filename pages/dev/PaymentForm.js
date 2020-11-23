@@ -121,7 +121,7 @@ const CheckoutForm = ({ productSelected }) => {
   }
   //TODO:  支払い方法を更新し、請求書の支払いを再試行する → 支払い情報の更新画面に移動
   function retryInvoiceWithNewPaymentMethod({ paymentMethodId, invoiceId }) {
-    const priceId = productSelected.name.toUpperCase()
+    const priceId = productSelected?.name.toUpperCase()
     return (
       fetch('/retry-invoice', {
         method: 'post',
@@ -192,7 +192,7 @@ const CheckoutForm = ({ productSelected }) => {
   }
   // サブスクの登録処理を実行する
   function createSubscription({ paymentMethodId }) {
-    const priceId = productSelected.name.toUpperCase()
+    const priceId = productSelected?.name.toUpperCase()
     return (
       fetch('/create-subscription', {
         method: 'post',
@@ -218,7 +218,7 @@ const CheckoutForm = ({ productSelected }) => {
           return {
             subscription: result,
             paymentMethodId: paymentMethodId,
-            priceId: productSelected.name,
+            priceId: productSelected?.name,
           }
         })
         // Some payment methods require a user to do additional
@@ -312,10 +312,10 @@ const CheckoutForm = ({ productSelected }) => {
               </Typography>
           </div>
           <Typography className={styles.text_gray_700__text_base}>
-            商品名：{productSelected.name}
+            商品名：{productSelected?.name}
           </Typography>
           <Typography className={styles.text_gray_700__text_base}>
-            価格：￥{productSelected.price}/月(税抜)
+            価格：￥{productSelected?.price}/月(税抜)
           </Typography>
 
           <div className={styles.w_full}>

@@ -30,7 +30,7 @@ const UserGradeChoice = () => {
         { id: 2, name: 'シルバー会員', imageId: 2, price: '1000', description: 'サービス説明2'},
         { id: 3, name: 'ゴールド会員', imageId: 3, price: '2000', description: 'サービス説明3'},
     ]
-    const [selectedProductId, setSelectedProductId] = useState(Number())
+    const [selectedProductId, setSelectedProductId] = useState(1)
     // const [customer] = useState(location.state.customer)
 
     const choiceUserGrade = (id :number) => {
