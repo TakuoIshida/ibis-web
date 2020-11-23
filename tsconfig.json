@@ -24,6 +24,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "pages/_app.tsx", "components/login.js", "src/helpers/withAuth.js"
+    "**/*.tsx", "pages/_app.tsx", "components/login.js", "src/helpers/withAuth.js", "pages/dev/PaymentForm.js"
   ]
 }
