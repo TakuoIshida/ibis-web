@@ -2,7 +2,7 @@ import { ArticleArticleIdPurchase } from '../../../util/sample-data'
 import { Button } from '@material-ui/core'
 import PublishIcon from '@material-ui/icons/Publish'
 import { FC, useState } from 'react'
-import { post } from '../../../util/common'
+import { post } from '../../../util/function'
 import { BASE_URL } from '../../../util/settings'
 import { useRouter } from 'next/router'
 

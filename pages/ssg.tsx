@@ -1,4 +1,4 @@
-import { get } from '../util/common'
+import { get } from '../util/function'
 
 type confirmType = {
     value: number,
