@@ -16,6 +16,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   Router.events.on('routeChangeStart', () => setLoading(true))
   Router.events.on('routeChangeComplete', () => setLoading(false))
   Router.events.on('routeChangeError', () => setLoading(false))
+  // TODO: login認証後のstripe決済情報の同期
+    // １ フロント：Login時に、/api/v1/にユーザーのemaliをバックエンドに投げる
+    // ２ バック：リクエストを受けて、stripeにユーザーemailがあるか確認する
+    // ３ バック：ユーザーがあれば、そのまま取得する。なければ作成して、customer情報をフロントに返す
+    // ４ フロント：ユーザーのcustomer情報（主に、id, token）を取得し、状態として保持する
+
+    // TODO: Login時に、ユーザーidに紐づいたランクを取得する
+    // １ フロント：idをバックエンドに渡す。
+    // ２ バックエンド：user_id を元に、ランクを取得する
+    // ３ フロント：userランクをglobalに保持する
+    // ４ 各ページでランクをuseContextで取得し、ランクごとの処理を実装する
   return (
       <Provider store={store}>
         <AuthProvider>

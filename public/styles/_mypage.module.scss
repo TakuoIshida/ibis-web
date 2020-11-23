@@ -1,0 +1,31 @@
+@import "./variables";
+.display_flex {
+    display: flex;
+    margin-top: 50px;
+    .row {
+        margin: auto;
+        .recommend {
+            padding: 0;
+            margin: auto;
+            text-align: center;
+        }
+    }
+}
+
+.selected {
+    border: 5px solid $ibis-orange;
+    border-radius: 10px;
+}
+.card {
+    width: 300px;
+}
+.plan {
+    text-align: center;
+    margin-bottom: 0;
+}
+.div_button {
+    width: 150px;
+    display: block;
+    margin: 20px auto;
+    text-align:center;
+}

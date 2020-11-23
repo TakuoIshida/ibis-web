@@ -36,6 +36,10 @@
         }
     }
 }
+.selected {
+    border: 5px solid $ibis-orange;
+    border-radius: 10px;
+}
 
 .card {
     width: 300px;
