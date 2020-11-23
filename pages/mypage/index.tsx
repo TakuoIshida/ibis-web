@@ -7,15 +7,26 @@ import Button from '@material-ui/core/Button'
 import router from 'next/router'
 import { useForm } from 'react-hook-form'
 import { loginCheckAndRedilect, getUserInfo} from '../../util/function'
+import { gradeList } from '../../util/const'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Card from '@material-ui/core/Card'
+import Divider from '@material-ui/core/Divider'
+import Typography from '@material-ui/core/Typography'
+import styles from '../../public/styles/_mypage.module.scss'
+
+// Mypage
+
+// ユーザー情報・ランクの表示・変更
+// ランクの表示・変更
+// (クレジット決済情報の変更)
 
 type FormData = {
   text: string,
   userGrade: number
 }
 
-function Alert(props: any) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />
-}
 import { TextField } from '@material-ui/core'
 
 const Index = () => {
@@ -23,27 +34,42 @@ const Index = () => {
   loginCheckAndRedilect()
 
   const userInfo = getUserInfo()
-  console.log(userInfo)
+  // TODO: APIからユーザーのグレードを取得する
+  function getUserGrade():number {
+    return 2
+  }
+  const userGrade: number = getUserGrade()
   const {register, handleSubmit, errors} = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
     // submitFocusError: true
   })
   const [open, setOpen] = useState(false)
-  
+  // ユーザーのグレードを選択する
+  const [selectedGradeId, setSelectedProductId] = useState(userGrade)
+  const choiceUserGrade = (id :number) => {
+    setSelectedProductId(id)
+    // 現在とは違うサービスであれば、「グレードを変更する」が押せるようにする
+
+  }
   const onSubmitData = (data: FormData) => {
     console.log(data)
     setOpen(true)
     setText(data.text)
+    // 2秒後に表示を消す
+    setTimeout(() => setOpen(false), 2000)
     // TODO: POST, asyncで非同期処理必須
     // await fetch(url, body).then(() => router.push('/'))
   }
   //メモ TODO: 入力内容が増える・複雑化するようならreduxに変更する
   const [text, setText] = useState('')
-const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-  console.log(e.target.value)
-  setText(e.target.value)
-}
+  const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    console.log(e.target.value)
+    setText(e.target.value)
+  }
+  const gradeChangeRequest = (selectedGradeId: number) => {
+    console.log("selectedGradeId is ", selectedGradeId)
+  }
   //watchに各フォーム部品のnameの値を引数で渡すとでタイムリーで入力状態を監視してる
   return (
   <>
@@ -51,9 +77,8 @@ const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputEl
     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     open={open}
     >
-    <Alert severity="success" >更新完了しました</Alert >
+    <MuiAlert severity="success" elevation={6} variant="filled">更新完了しました</MuiAlert>
   </Snackbar>
-  {/*TODO:  Validationは、onBlurで行う。react-hooks-form の公式 */}
   {/* https://react-hook-form.com/api/#register */}
     {(userInfo?.photoURL)? (<Avatar alt="user photo" src={userInfo.photoURL} />) : (<AccountCircle />)}
     <form onSubmit={handleSubmit(onSubmitData)} className='contactBox'>
@@ -85,6 +110,84 @@ const handleChangeMemo = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputEl
       </Button >
       </form>
 
+      {/* 無料有料会員の表示・選択 */}
+      <div className={styles.display_flex}>
+        {gradeList.map((grade, idx) => {
+            return(
+            <div className={styles.row}>
+                {/* 無料会員は選択されない */}
+                {
+                    idx == 0 ? 
+                    (
+                    <div>
+                    <Card key={idx} className={styles.card}>
+                        <CardMedia
+                        component="img"
+                        className={styles.height}
+                        // publicをrootとしてpathを書く
+                        image={`/img/${grade.imageId}.jpg`}
+                        title={grade.name}
+                        alt={grade.name}
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {grade.name}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {grade.description}
+                        </Typography>
+                        <Divider />
+                        <Typography variant="h6" gutterBottom className={styles.plan}>
+                            {grade.price}円/月（税抜）
+                        </Typography>
+                        </CardContent>
+                    </Card>
+                    </div>
+                    )
+                  :
+                  (
+                    //   選択されたサービスの枠を囲う
+                    <div className={(idx == selectedGradeId-1)? styles.selected: ""}>
+                      <Card key={idx} className={styles.card}>
+                      <CardActionArea onClick={() => choiceUserGrade(grade.id)}>
+                          <CardMedia
+                          component="img"
+                          className={styles.height}
+                          // publicをrootとしてpathを書く
+                          image={`/img/${grade.imageId}.jpg`}
+                          title={grade.name}
+                          alt={grade.name}
+                          />
+                          <CardContent>
+                          <Typography gutterBottom variant="h5" component="h2">
+                              {grade.name}
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary" component="p">
+                              {grade.description}
+                          </Typography>
+                          <Divider />
+                          <Typography variant="h6" gutterBottom className={styles.plan}>
+                              {grade.price}円/月（税抜）
+                          </Typography>
+                          </CardContent>
+                      </CardActionArea>
+                      </Card>
+                    </div>
+                  )
+                }
+            </div>
+            )
+        })}
+    </div>
+      {/* 現在使用しているグレードがわかるようにする */}
+      
+      <Button 
+        variant="contained"
+        color="secondary"
+        disabled={(userGrade != selectedGradeId)? false : true}
+        onClick={() => gradeChangeRequest(selectedGradeId)}> 変更する</Button>
+      {/* TODO: 任意のクレジットを登録できる */}
+      {/* TODO: 任意のクレジットを選択できる */}
   </>
   )
 }
