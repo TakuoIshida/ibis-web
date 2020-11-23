@@ -9,6 +9,15 @@ import Footer from '../re-ducks/commons/components/Footer'
 const TopPage: NextPage = () => {
 
   return (
+    // TODO: login認証後のstripe決済情報の同期
+    // １ フロント：Login時に、/api/v1/にユーザーのemaliをバックエンドに投げる
+    // ２ バック：リクエストを受けて、stripeにユーザーemailがあるか確認する
+    // ３ バック：ユーザーがあれば、そのまま取得する。なければ作成して、customer情報をフロントに返す
+    // ４ フロント：ユーザーのcustomer情報（主に、id, token）を取得し、状態として保持する
+
+    // TODO: 有料会員登録前の処理
+    // サービスページで、有料会員を選択した際に、Loginへ飛ばす
+    
     <div id="index">
       <Button variant="contained">
           <Link href="/dev">

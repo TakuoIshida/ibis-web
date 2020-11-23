@@ -109,11 +109,10 @@ const UserGradeChoice = () => {
             )
         })}
     </div>
+        {/* 有料会員であれば、クレジットフォームを表示 */}
         {selectedProductId > 1 ? (
             <PaymentForm
             productSelected={gradeList[selectedProductId - 1]}
-            // TODO: customer の取得→customer.idが必要
-            // customer={customer}
             />
           ) : null}
     </>

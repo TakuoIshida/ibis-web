@@ -2,7 +2,7 @@ import { FC, useEffect, useContext } from 'react'
 import Router from 'next/router'
 import { AuthContext } from './Auth'
 import { Button } from '@material-ui/core'
-import { popupLogin } from '../common'
+import { popupLogin } from '../function'
 
 export const Login: FC = () => {
   const { currentUser } = useContext(AuthContext)

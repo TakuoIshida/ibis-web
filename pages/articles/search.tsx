@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { post } from '../../util/common'
+import { post } from '../../util/function'
 import { BASE_URL } from '../../util/settings'
 import { ArticleList } from '../../util/sample-data'
 

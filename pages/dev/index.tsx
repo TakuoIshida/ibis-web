@@ -20,7 +20,7 @@ import Loading from '../../re-ducks/dev/components/DevLoading'
 
 import styles from '../../public/styles/_dev.module.scss'
 // import { BASE_URL, API_ROUTE } from "../../util/settings"
-import { get, post } from '../../util/common'
+import { get, post } from '../../util/function'
 import Logout from '../../util/auth/Logout'
 import { Login } from '../../util/auth/Login'
 import ClipBoard from '../../re-ducks/commons/components/ClipBoard'

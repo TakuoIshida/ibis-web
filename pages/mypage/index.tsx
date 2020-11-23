@@ -4,9 +4,9 @@ import React, {useState} from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Button from '@material-ui/core/Button'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import { useForm } from 'react-hook-form'
-import { loginCheckAndRedilect, getUserInfo} from '../../util/common'
+import { loginCheckAndRedilect, getUserInfo} from '../../util/function'
 
 type FormData = {
   text: string,
@@ -21,7 +21,6 @@ import { TextField } from '@material-ui/core'
 const Index = () => {
   // URL直叩き対策
   loginCheckAndRedilect()
-  const router = useRouter()
 
   const userInfo = getUserInfo()
   console.log(userInfo)

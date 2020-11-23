@@ -19,7 +19,7 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { isUserLogin, popupLogin, logout, getUserInfo } from '../../../util/common'
+import { isUserLogin, popupLogin, logout, getUserInfo } from '../../../util/function'
 import Link from 'next/link'
 
 const SearchAppBar = () => {
