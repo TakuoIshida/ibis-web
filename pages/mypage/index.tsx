@@ -15,11 +15,11 @@ import Card from '@material-ui/core/Card'
 import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import styles from '../../public/styles/_mypage.module.scss'
+import { cancelSubscription, updateSubscription } from '../../util/stripe_function'
 
 // Mypage
 
-// ユーザー情報・ランクの表示・変更
-// ランクの表示・変更
+// ユーザープロフィール情報/stripe情報のGET・POST
 // (クレジット決済情報の変更)
 
 type FormData = {
@@ -49,8 +49,6 @@ const Index = () => {
   const [selectedGradeId, setSelectedProductId] = useState(userGrade)
   const choiceUserGrade = (id :number) => {
     setSelectedProductId(id)
-    // 現在とは違うサービスであれば、「グレードを変更する」が押せるようにする
-
   }
   const onSubmitData = (data: FormData) => {
     console.log(data)
@@ -69,6 +67,15 @@ const Index = () => {
   }
   const gradeChangeRequest = (selectedGradeId: number) => {
     console.log("selectedGradeId is ", selectedGradeId)
+    // ユーザのサブスクIdを取得してPOSTする
+    // updateSubscription()
+  }
+  const stopSubscription = (selectedGradeId: number) => {
+    console.log("cancel is start")
+    console.log("selectedGradeId", selectedGradeId)
+    // ユーザのサブスクIdを取得してPOSTする
+    // cancelSubscription()
+
   }
   //watchに各フォーム部品のnameの値を引数で渡すとでタイムリーで入力状態を監視してる
   return (
@@ -186,6 +193,11 @@ const Index = () => {
         color="secondary"
         disabled={(userGrade != selectedGradeId)? false : true}
         onClick={() => gradeChangeRequest(selectedGradeId)}> 変更する</Button>
+        <Button 
+        variant="contained"
+        color="primary"
+        disabled={(userGrade != selectedGradeId)? true : false}
+        onClick={() => stopSubscription(selectedGradeId)}> 有料会員をやめる</Button>
       {/* TODO: 任意のクレジットを登録できる */}
       {/* TODO: 任意のクレジットを選択できる */}
   </>
